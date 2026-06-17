@@ -188,4 +188,8 @@ class DashboardApp {
 
 document.addEventListener('DOMContentLoaded', () => {
     new DashboardApp();
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> origin/frontend-refactor-17303371233115302678
