@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Vegen Digital | Dashboard Mercado Maravillas</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/dashboard.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="brand-logo">
+                <i class="fas fa-seedling"></i>
+                <div class="logo-text">
+                    <span class="vegen">Vegen</span>
+                    <span class="digital">Digital</span>
+                </div>
+            </div>
+            <nav id="sidebar-nav">
+                <a href="#" class="nav-item active" data-target="resumen"><i class="fas fa-chart-line"></i> Resumen General</a>
+                <a href="#" class="nav-item" data-target="comercios"><i class="fas fa-store"></i> Métricas Comercios</a>
+                <a href="#" class="nav-item" data-target="marketing"><i class="fas fa-bullhorn"></i> Tracción RRSS y Ads</a>
+                <a href="#" class="nav-item" data-target="busqueda"><i class="fas fa-search"></i> Inteligencia de Búsqueda</a>
+            </nav>
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <span>Gerencia Maravillas</span>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <h1 id="page-title">Resumen General</h1>
+                <div class="header-tools">
+                    <span class="date-display">Datos actualizados: <strong id="current-date"></strong></span>
+                    <button class="btn-refresh" onclick="location.reload()"><i class="fas fa-sync-alt"></i> Actualizar</button>
+                </div>
+            </header>
+
+            <div id="content-area">
+
+                <div id="view-resumen" class="dashboard-view">
+                    <section class="kpi-grid">
+                        <div class="kpi-card">
+                            <div class="kpi-icon blue"><i class="fas fa-users"></i></div>
+                            <div class="kpi-data"><h3>Respuestas Totales</h3><p class="kpi-value">42</p></div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-icon red"><i class="fas fa-percentage"></i></div>
+                            <div class="kpi-data"><h3>Índice Digitalización Promedio</h3><p class="kpi-value">48%</p></div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-icon green"><i class="fas fa-arrow-trend-up"></i></div>
+                            <div class="kpi-data"><h3>Top Necesidad</h3><p class="kpi-value" style="font-size: 1.2rem; margin-top: 5px;">Redes Sociales</p></div>
+                        </div>
+                    </section>
+
+                    <div class="charts-grid">
+                        <div class="chart-container">
+                            <h3>Evolución Índice de Digitalización</h3>
+                            <canvas id="trafficChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="view-marketing" class="dashboard-view hidden">
+                    <section class="kpi-grid">
+                        <div class="kpi-card">
+                            <div class="kpi-icon orange"><i class="fas fa-envelope"></i></div>
+                            <div class="kpi-data"><h3>Newsletter (Clicks)</h3><p class="kpi-value">312</p></div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-icon blue"><i class="fas fa-ad"></i></div>
+                            <div class="kpi-data"><h3>Banners Web</h3><p class="kpi-value">1.105</p></div>
+                        </div>
+                    </section>
+
+                    <div class="details-grid">
+                        <div class="data-table-container">
+                            <h3><i class="fas fa-share-alt"></i> Tráfico desde RRSS</h3>
+                            <table class="data-table">
+                                <thead><tr><th>Origen</th><th>Visitas</th><th>Conv. WA</th></tr></thead>
+                                <tbody>
+                                    <tr><td><i class="fab fa-instagram"></i> Instagram</td><td>1.250</td><td class="wa-count">45</td></tr>
+                                    <tr><td><i class="fab fa-facebook"></i> Facebook</td><td>890</td><td class="wa-count">32</td></tr>
+                                    <tr><td><i class="fab fa-tiktok"></i> TikTok</td><td>2.100</td><td class="wa-count">18</td></tr>
+                                    <tr><td><i class="fab fa-google"></i> Google Business (GBP)</td><td>670</td><td class="wa-count">51</td></tr>
+                                    <tr><td><i class="fab fa-tripadvisor"></i> TripAdvisor</td><td>145</td><td class="wa-count">12</td></tr>
+                                    <tr><td><i class="fab fa-youtube"></i> YouTube</td><td>230</td><td class="wa-count">5</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="data-table-container">
+                            <h3><i class="fas fa-paper-plane"></i> Campañas Semanales</h3>
+                            <table class="data-table">
+                                <thead><tr><th>Campaña</th><th>Enviados</th><th>Clicks</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Ofertas Semanales (Lunes)</td><td>12.500</td><td>1.240</td></tr>
+                                    <tr><td>Newsletter Novedades</td><td>8.400</td><td>950</td></tr>
+                                    <tr><td>Evento Cata Vinos (FB Ad)</td><td>5.000</td><td>420</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="view-comercios" class="dashboard-view hidden">
+                    <div class="data-table-container">
+                        <h3>Ranking de Comercios (Top 5)</h3>
+                        <table class="data-table" id="table-commerces">
+                            <thead>
+                                <tr><th>Comercio</th><th>Categoría</th><th>Visitas</th><th>Clicks WA</th><th>Tendencia</th></tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="view-busqueda" class="dashboard-view hidden">
+                    <div class="details-grid single-col">
+                        <div class="data-table-container">
+                            <h3>Palabras Clave más buscadas</h3>
+                            <table class="data-table" id="table-keywords">
+                                <thead><tr><th>Keyword</th><th>Frecuencia</th><th>Acción</th></tr></thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
