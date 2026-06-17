@@ -85,9 +85,18 @@ a:hover{color:var(--g2);}
 }
 .header-right{
   text-align:right;font-size:12px;color:var(--muted);
-  display:flex;flex-direction:column;
+  display:flex;flex-direction:row;align-items:center;
 }
 .header-right strong{color:var(--text);font-weight:600;}
+
+.header-text {
+  display: none; /* Hide text by default on very small mobile */
+}
+@media (min-width: 600px) {
+  .header-text {
+    display: block;
+  }
+}
 
 .dashboard-btn-container {
   margin-left: 15px;
@@ -188,18 +197,20 @@ a:hover{color:var(--g2);}
   background: var(--bg);
 }
 
-.block-num{
-  font-family:'Syne',sans-serif;
-  font-size:13px;font-weight:700;color:var(--g);
+.block-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 .block-title{
-  font-size:20px;font-family:'Syne',sans-serif;color:var(--text);margin-top: 5px;
+  font-size:20px;font-family:'Syne',sans-serif;color:var(--g);
+}
+.block-icon{
+  font-size:24px;opacity:0.8;
 }
 .block-desc{
   font-size:13px;color:var(--muted);
-}
-.block-icon{
-  position:absolute;top:20px;right:20px;font-size:24px;opacity:0.8;
+  padding-right: 20px; /* leave space for toggle icon */
 }
 .block-toggle-icon {
   position: absolute;

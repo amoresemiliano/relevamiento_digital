@@ -51,10 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Handle Accordion logic
   const blocks = document.querySelectorAll('.block');
 
-  // Open the first block by default
-  if(blocks.length > 0) {
-    blocks[0].classList.add('active');
-  }
+  // By default all blocks are closed.
 
   blocks.forEach(block => {
     const header = block.querySelector('.block-header');
