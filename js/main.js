@@ -211,8 +211,5 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCheckedStyles();
   updateProgress();
   handleConditionals();
-<<<<<<< HEAD
+
 });
-=======
-});
->>>>>>> origin/frontend-refactor-17303371233115302678

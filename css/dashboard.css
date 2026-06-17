@@ -94,8 +94,5 @@ h1, h2, h3, h4 { font-family: var(--font-header); text-transform: uppercase; fon
 .mt-4 { margin-top: 1.5rem; }
 .bg-green { background-color: #00C27C; }
 .bg-red { background-color: #ff5a5a; }
-<<<<<<< HEAD
 .bg-orange { background-color: #ffb74d; }
-=======
 .bg-orange { background-color: #ffb74d; }
->>>>>>> origin/frontend-refactor-17303371233115302678
