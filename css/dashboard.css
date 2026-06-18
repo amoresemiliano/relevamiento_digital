@@ -1,24 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
 
 :root {
-    --bg-dark: #0f1114;
-    --bg-panel: #161a1f;
-    --text-main: #f8f9fa;
-    --text-muted: #8a949d;
-    --blue: #3498db;
-    --red: #e74c3c;
-    --green: #2ecc71;
-    --orange: #f39c12;
-    --border: #24292e;
-    /* Definición de fuentes */
-    --font-header: 'Oswald', sans-serif;
-    --font-data: 'Roboto Mono', monospace;
+    --bg-main: #f9f9f9;
+    --bg-sidebar: #ffffff;
+    --bg-card: #ffffff;
+    --text-main: #333333;
+    --text-muted: #666666;
+    --border: #e0e0e0;
+    --primary: #00C27C;
+    --accent: #4fc3f7;
+    --font-data: 'Inter', 'DM Sans', sans-serif;
+    --font-header: 'Syne', sans-serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 /* Roboto Mono para todo el cuerpo, datos y tablas */
-body { font-family: var(--font-data); background-color: var(--bg-dark); color: var(--text-main); -webkit-font-smoothing: antialiased; }
+body { font-family: var(--font-data); background-color: var(--bg-main); color: var(--text-main); -webkit-font-smoothing: antialiased; }
 
 /* Oswald para titulares */
 h1, h2, h3, h4 { font-family: var(--font-header); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; }
@@ -26,7 +24,7 @@ h1, h2, h3, h4 { font-family: var(--font-header); text-transform: uppercase; fon
 .dashboard-container { display: flex; min-height: 100vh; }
 
 /* SIDEBAR */
-.sidebar { width: 260px; background-color: var(--bg-panel); border-right: 1px solid var(--border); padding: 25px; display: flex; flex-direction: column; flex-shrink: 0; }
+.sidebar { width: 260px; background-color: var(--bg-card); border-right: 1px solid var(--border); padding: 25px; display: flex; flex-direction: column; flex-shrink: 0; }
 .brand-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 40px; }
 .brand-logo i { font-size: 32px; color: var(--green); }
 .logo-text .vegen { font-family: var(--font-header); font-size: 26px; display: block; line-height: 1; }
@@ -34,7 +32,7 @@ h1, h2, h3, h4 { font-family: var(--font-header); text-transform: uppercase; fon
 
 .sidebar nav { flex-grow: 1; }
 .nav-item { display: flex; align-items: center; gap: 12px; color: var(--text-muted); text-decoration: none; padding: 14px 18px; border-radius: 10px; margin-bottom: 8px; transition: 0.3s; font-size: 13px; }
-.nav-item:hover, .nav-item.active { background-color: rgba(255,255,255,0.05); color: var(--text-main); }
+.nav-item:hover, .nav-item.active { background-color: rgba(0,0,0,0.05); color: var(--text-main); }
 .nav-item.active { border-left: 4px solid var(--blue); background-color: rgba(52, 152, 219, 0.1); font-weight: bold; }
 .user-info { display: flex; align-items: center; gap: 10px; padding: 15px 0; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 12px; }
 
@@ -48,7 +46,7 @@ h1, h2, h3, h4 { font-family: var(--font-header); text-transform: uppercase; fon
 
 /* KPI CARDS */
 .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; margin-bottom: 35px; }
-.kpi-card { background: var(--bg-panel); border: 1px solid var(--border); padding: 25px; border-radius: 15px; display: flex; align-items: center; gap: 20px; transition: transform 0.3s; }
+.kpi-card { background: var(--bg-card); border: 1px solid var(--border); padding: 25px; border-radius: 15px; display: flex; align-items: center; gap: 20px; transition: transform 0.3s; }
 .kpi-card:hover { transform: translateY(-3px); }
 .kpi-icon { width: 60px; height: 60px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; }
 .kpi-icon.blue { background: rgba(52,152,219,0.15); color: var(--blue); }
@@ -61,20 +59,20 @@ h1, h2, h3, h4 { font-family: var(--font-header); text-transform: uppercase; fon
 
 /* CHARTS */
 .charts-grid { display: grid; grid-template-columns: 1fr; gap: 25px; margin-bottom: 35px; }
-.chart-container { background: var(--bg-panel); padding: 25px; border-radius: 15px; border: 1px solid var(--border); height: 400px; }
+.chart-container { background: var(--bg-card); padding: 25px; border-radius: 15px; border: 1px solid var(--border); height: 400px; }
 .chart-container h3 { font-size: 18px; margin-bottom: 20px; color: var(--text-muted); }
 
 /* TABLAS DATOS */
 .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 25px; }
 .details-grid.single-col { grid-template-columns: 1fr; }
-.data-table-container { background: var(--bg-panel); padding: 25px; border-radius: 15px; border: 1px solid var(--border); }
+.data-table-container { background: var(--bg-card); padding: 25px; border-radius: 15px; border: 1px solid var(--border); }
 .data-table-container h3 { font-size: 18px; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
 .data-table-container h3 i { color: var(--blue); font-size: 16px; }
 
 .data-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
 .data-table th { text-align: left; color: var(--text-muted); font-size: 11px; padding: 12px 10px; border-bottom: 1px solid var(--border); text-transform: uppercase; font-weight: normal; }
-.data-table td { padding: 15px 10px; border-bottom: 1px solid rgba(255,255,255,0.02); color: var(--text-main); }
-.data-table tbody tr:hover { background-color: rgba(255,255,255,0.01); }
+.data-table td { padding: 15px 10px; border-bottom: 1px solid var(--border); color: var(--text-main); }
+.data-table tbody tr:hover { background-color: #f1f1f1; }
 
 .data-table td strong { color: var(--text-main); }
 .data-table i { margin-right: 8px; width: 16px; text-align: center; }
@@ -94,5 +92,4 @@ h1, h2, h3, h4 { font-family: var(--font-header); text-transform: uppercase; fon
 .mt-4 { margin-top: 1.5rem; }
 .bg-green { background-color: #00C27C; }
 .bg-red { background-color: #ff5a5a; }
-.bg-orange { background-color: #ffb74d; }
 .bg-orange { background-color: #ffb74d; }
