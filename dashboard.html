@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Vegen Digital | Dashboard Mercado Maravillas</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/dashboard.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="brand-logo" style="display:flex; justify-content:center; padding: 20px 0;">
+                <img src="img/logo_vegen.png" alt="Vegen Digital" style="max-width: 80%;">
+            </div>
+
+            <nav id="sidebar-nav">
+                <a href="#" class="nav-item active" data-target="resumen"><i class="fas fa-chart-line"></i> Resumen General</a>
+                <a href="#" class="nav-item" data-target="bloques"><i class="fas fa-cubes"></i> Análisis por Bloques</a>
+                <a href="#" class="nav-item" data-target="cruces"><i class="fas fa-project-diagram"></i> Cruce de Variables</a>
+            </nav>
+            <div class="user-info">
+                <div>
+                    <i class="fas fa-user-circle"></i>
+                    <span>Gerencia Maravillas</span>
+                </div>
+                <a href="#" class="btn-logout" style="color: #ff5a5a; text-decoration: none; font-size: 0.9rem; margin-top: 10px; display: inline-block;"><i class="fas fa-sign-out-alt"></i> Salir</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <h1 id="page-title">Resumen General</h1>
+                <div class="header-tools">
+                    <span class="date-display">Datos actualizados: <strong id="current-date"></strong></span>
+                    <a href="index.html" class="btn-refresh" style="text-decoration:none;"><i class="fas fa-file-alt"></i> Formulario</a>
+                </div>
+            </header>
+
+
+            <div id="content-area">
+
+                <!-- A. RESUMEN GENERAL -->
+                <div id="view-resumen" class="dashboard-view">
+                    <section class="kpi-grid">
+                        <div class="kpi-card">
+                            <div class="kpi-icon blue"><i class="fas fa-users"></i></div>
+                            <div class="kpi-data"><h3>Respuestas Recibidas</h3><p class="kpi-value">42</p></div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-icon red"><i class="fas fa-percentage"></i></div>
+                            <div class="kpi-data"><h3>Índice Digitalización</h3><p class="kpi-value">48%</p></div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-icon green"><i class="fas fa-arrow-trend-up"></i></div>
+                            <div class="kpi-data"><h3>Top Necesidad</h3><p class="kpi-value" style="font-size: 1.2rem; margin-top: 5px;">Redes Sociales</p></div>
+                        </div>
+                    </section>
+
+                    <div class="charts-grid">
+                        <div class="chart-container">
+                            <h3>Evolución de Respuestas (Mensual)</h3>
+                            <canvas id="chartRespuestas"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="data-table-container">
+                        <h3>Ranking de Comercios por Índice</h3>
+                        <table class="data-table" id="table-ranking">
+                            <thead>
+                                <tr><th>Comercio</th><th>Categoría</th><th>Índice</th><th>Estado</th></tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- B. ANÁLISIS POR BLOQUES -->
+                <div id="view-bloques" class="dashboard-view hidden">
+                    <div class="details-grid">
+                        <div class="chart-container">
+                            <h3>Uso de Redes Sociales</h3>
+                            <canvas id="chartRedes"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Presupuesto de Marketing Mensual</h3>
+                            <canvas id="chartPresupuesto"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="details-grid mt-4">
+                        <div class="chart-container">
+                            <h3>Apps de Delivery más Usadas</h3>
+                            <canvas id="chartDelivery"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Adopción de IA (Casos de Uso)</h3>
+                            <canvas id="chartIA"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="kpi-grid mt-4">
+                        <div class="kpi-card">
+                            <div class="kpi-icon orange"><i class="fas fa-globe"></i></div>
+                            <div class="kpi-data"><h3>Tienen Web Propia</h3><p class="kpi-value">35%</p></div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-icon blue"><i class="fab fa-google"></i></div>
+                            <div class="kpi-data"><h3>Google Business Verif.</h3><p class="kpi-value">62%</p></div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-icon green"><i class="fas fa-cash-register"></i></div>
+                            <div class="kpi-data"><h3>Usan Software TPV</h3><p class="kpi-value">55%</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- C. CRUCE DE VARIABLES -->
+                <div id="view-cruces" class="dashboard-view hidden">
+                    <div class="details-grid">
+                        <div class="chart-container">
+                            <h3>Índice de Digitalización vs Tamaño del Puesto</h3>
+                            <p style="font-size:12px; color:var(--muted); margin-bottom:10px;">Comercios con más empleados tienden a estar más digitalizados.</p>
+                            <canvas id="chartCrucesTamano"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Disposición a Invertir vs Principal Obstáculo</h3>
+                            <p style="font-size:12px; color:var(--muted); margin-bottom:10px;">Correlación entre el presupuesto y las barreras percibidas.</p>
+                            <canvas id="chartCrucesObstaculos"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="data-table-container mt-4">
+                        <h3>Oportunidades de Venta (Filtro Inteligente)</h3>
+                        <p style="font-size:13px; color:var(--muted); margin-bottom:15px;">Comerciantes dispuestos a invertir +100€ que gestionan sus propias redes (falta de tiempo).</p>
+                        <table class="data-table" id="table-oportunidades">
+                            <thead><tr><th>Comercio</th><th>Responsable</th><th>Disposición Inversión</th><th>Servicio Prioritario</th></tr></thead>
+                            <tbody>
+                                <tr><td>Carnicería Selecta</td><td>Juan Pérez</td><td>100-300€</td><td><span class="badge">Gestión RRSS</span></td></tr>
+                                <tr><td>Frutería Maravilla</td><td>Ana Gómez</td><td>300-600€</td><td><span class="badge">Web / Tienda Online</span></td></tr>
+                                <tr><td>Pescados El Puerto</td><td>Carlos Ruiz</td><td>100-300€</td><td><span class="badge">Ads (Meta/Google)</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
