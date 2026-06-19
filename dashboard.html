@@ -34,26 +34,31 @@
                 <img src="img/logo_vegen.png" alt="Vegen Digital" style="max-width: 80%;">
             </div>
 
-            <nav id="sidebar-nav">
+                        <nav id="sidebar-nav">
                 <a href="#" class="nav-item active" data-target="resumen"><i class="fas fa-chart-line"></i> Resumen General</a>
                 <a href="#" class="nav-item" data-target="bloques"><i class="fas fa-cubes"></i> Análisis por Bloques</a>
                 <a href="#" class="nav-item" data-target="cruces"><i class="fas fa-project-diagram"></i> Cruce de Variables</a>
+                <a href="#" class="nav-item" data-target="detalle"><i class="fas fa-list-ul"></i> Detalle Respuestas</a>
             </nav>
-            <div class="user-info">
-                <div>
-                    <i class="fas fa-user-circle"></i>
-                    <span>Gerencia Maravillas</span>
-                </div>
-                <a href="index.html" class="btn-logout" style="color: #ff5a5a; text-decoration: none; font-size: 12px; margin-left: 22px; transition: color 0.3s;"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
-            </div>
+
         </aside>
 
         <main class="main-content">
-            <header class="main-header">
-                <h1 id="page-title">Resumen General</h1>
-                <div class="header-tools">
-                    <span class="date-display">Datos actualizados: <strong id="current-date"></strong></span>
-                    <a href="index.html" class="btn-refresh" style="text-decoration:none;"><i class="fas fa-file-alt"></i> Formulario</a>
+                                    <header class="top-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding-bottom: 10px; border-bottom: 1px solid var(--border);">
+                <div>
+                    <h1 id="page-title" style="font-size: 24px; margin-bottom: 2px;">Resumen General</h1>
+                    <p class="subtitle" style="font-size: 13px; color: var(--text-muted); margin: 0;">Estado de digitalización del Mercado Maravillas</p>
+                </div>
+                <div class="header-actions" style="display: flex; align-items: center; gap: 10px;">
+                    <button class="last-update" id="btn-refresh" style="font-size: 12px; color: var(--text-muted); background: #fff; padding: 8px 15px; border-radius: 8px; border: 1px solid var(--border); cursor: pointer;">
+                        <i class="fas fa-sync-alt"></i> Actualizado: <span id="current-date"></span>
+                    </button>
+                    <button class="btn-pdf" id="btn-download-pdf" style="background: linear-gradient(135deg, #00C27C 0%, #009960 100%); color: white; border: none; padding: 8px 15px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 6px rgba(0, 194, 124, 0.2);"><i class="fas fa-file-pdf"></i> PDF</button>
+                    <div class="user-controls" style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-main); background: #fff; padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border);">
+                        <i class="fas fa-user-circle" style="font-size: 16px; color: #00C27C;"></i>
+                        <span id="header-user-name" class="user-info-span">Usuario</span>
+                        <a href="#" class="btn-logout" style="color: #ff5a5a; text-decoration: none; font-weight: 600; border-left: 1px solid var(--border); padding-left: 10px;"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+                    </div>
                 </div>
             </header>
 
@@ -80,7 +85,7 @@
                     <div class="charts-grid">
                         <div class="chart-container">
                             <h3>Evolución de Respuestas (Mensual)</h3>
-                            <canvas id="chartRespuestas"></canvas>
+                            <div class="chart-wrapper"><canvas id="chartRespuestas"></canvas></div>
                         </div>
                     </div>
 
@@ -100,39 +105,42 @@
                     <div class="details-grid">
                         <div class="chart-container">
                             <h3>Uso de Redes Sociales</h3>
-                            <canvas id="chartRedes"></canvas>
+                            <div class="chart-wrapper"><canvas id="chartRedes"></canvas></div>
                         </div>
                         <div class="chart-container">
                             <h3>Presupuesto de Marketing Mensual</h3>
-                            <canvas id="chartPresupuesto"></canvas>
+                            <div class="chart-wrapper"><canvas id="chartPresupuesto"></canvas></div>
                         </div>
                     </div>
 
                     <div class="details-grid mt-4">
                         <div class="chart-container">
                             <h3>Apps de Delivery más Usadas</h3>
-                            <canvas id="chartDelivery"></canvas>
+                            <div class="chart-wrapper"><canvas id="chartDelivery"></canvas></div>
                         </div>
                         <div class="chart-container">
                             <h3>Adopción de IA (Casos de Uso)</h3>
-                            <canvas id="chartIA"></canvas>
+                            <div class="chart-wrapper"><canvas id="chartIA"></canvas></div>
                         </div>
                     </div>
+
 
                     <div class="kpi-grid mt-4">
                         <div class="kpi-card">
                             <div class="kpi-icon orange"><i class="fas fa-globe"></i></div>
-                            <div class="kpi-data"><h3>Tienen Web Propia</h3><p class="kpi-value">35%</p></div>
+                            <div class="kpi-data"><h3>Tienen Web Propia</h3><p class="kpi-value" id="kpi-web">0%</p></div>
                         </div>
                         <div class="kpi-card">
                             <div class="kpi-icon blue"><i class="fab fa-google"></i></div>
-                            <div class="kpi-data"><h3>Google Business Verif.</h3><p class="kpi-value">62%</p></div>
+                            <div class="kpi-data"><h3>Google Business Verif.</h3><p class="kpi-value" id="kpi-gbp">0%</p></div>
                         </div>
                         <div class="kpi-card">
                             <div class="kpi-icon green"><i class="fas fa-cash-register"></i></div>
-                            <div class="kpi-data"><h3>Usan Software TPV</h3><p class="kpi-value">55%</p></div>
+                            <div class="kpi-data"><h3>Usan Software TPV</h3><p class="kpi-value" id="kpi-tpv">0%</p></div>
                         </div>
                     </div>
+
+                </div>
                 </div>
 
                 <!-- C. CRUCE DE VARIABLES -->
@@ -154,7 +162,7 @@
                         <h3>Oportunidades de Venta (Filtro Inteligente)</h3>
                         <p style="font-size:13px; color:var(--muted); margin-bottom:15px;">Comerciantes dispuestos a invertir +100€ que gestionan sus propias redes (falta de tiempo).</p>
                         <table class="data-table" id="table-oportunidades">
-                            <thead><tr><th>Comercio</th><th>Responsable</th><th>Disposición Inversión</th><th>Servicio Prioritario</th></tr></thead>
+                            <thead><tr><th>Comercio</th><th>Falta Principal</th><th>Disposición Inversión</th><th>Acción Comercial</th><th>Contacto Rápido</th></tr></thead>
                             <tbody>
                                 <tr><td>Carnicería Selecta</td><td>Juan Pérez</td><td>100-300€</td><td><span class="badge">Gestión RRSS</span></td></tr>
                                 <tr><td>Frutería Maravilla</td><td>Ana Gómez</td><td>300-600€</td><td><span class="badge">Web / Tienda Online</span></td></tr>
@@ -164,6 +172,25 @@
                     </div>
                 </div>
 
+            </div>
+
+
+            <!-- VISTA: DETALLE RESPUESTAS -->
+            <div id="view-detalle" class="dashboard-view hidden">
+                <div class="data-table-container">
+                    <h3><i class="fas fa-clipboard-list"></i> Conteo por Pregunta</h3>
+                    <table class="data-table" id="table-detalles">
+                        <thead>
+                            <tr>
+                                <th>Métrica / Pregunta</th>
+                                <th>Opciones Registradas</th>
+                            </tr>
+                        </thead>
+                        <tbody id="detalle-tbody">
+                            <!-- Llenado por JS -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
         </main>

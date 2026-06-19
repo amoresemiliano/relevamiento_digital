@@ -58,7 +58,7 @@ class DashboardApp {
                 loginOverlay.style.display = 'none';
 
                 // Update UI User info
-                const userInfoSpan = document.querySelector('.user-info span');
+                const userInfoSpan = document.querySelector('.user-info-span');
                 if (userInfoSpan) userInfoSpan.innerText = email === 'vegendigital@gmail.com' ? 'Admin Vegen' : 'Gerencia Maravillas';
 
                 this.initDashboard();
@@ -109,13 +109,18 @@ class DashboardApp {
             if (res.status === 'success' && res.data.length > 0) {
                 this.rawData = res.data;
                 this.processMetrics();
+                this.processDetailedCounts();
                 this.renderCharts();
                 this.populateTables();
+                this.renderDetalles();
+                this.renderOportunidades();
             } else {
                 // Fallback to mock data if empty
                 this.rawData = [];
                 this.renderCharts();
                 this.populateTables();
+                this.renderDetalles();
+                this.renderOportunidades();
             }
         } catch (err) {
             console.error("Error fetching secure data:", err);
@@ -123,6 +128,8 @@ class DashboardApp {
             this.rawData = [];
             this.renderCharts();
             this.populateTables();
+                this.renderDetalles();
+                this.renderOportunidades();
 
             // Optionally alert the user
             if (err.message.includes("Acceso denegado")) {
@@ -213,6 +220,22 @@ class DashboardApp {
             });
         });
 
+        // KPI Bloques: Web, GBP, TPV
+        let countWeb = 0, countGbp = 0, countTpv = 0;
+        this.rawData.forEach(comercio => {
+            const j = comercio.respuestas_json || {};
+            if (j.tiene_web && (j.tiene_web.includes("Sí") || j.tiene_web.includes("Si"))) countWeb++;
+            if (j.tiene_gbp && (j.tiene_gbp.includes("Sí") || j.tiene_gbp.includes("Si"))) countGbp++;
+            if (j.tipo_tpv && j.tipo_tpv.includes("TPV")) countTpv++; // TPV Básico o Inteligente
+        });
+
+        const elWeb = document.getElementById('kpi-web');
+        const elGbp = document.getElementById('kpi-gbp');
+        const elTpv = document.getElementById('kpi-tpv');
+        if (elWeb) elWeb.innerText = totalComercios > 0 ? Math.round((countWeb/totalComercios)*100) + '%' : '0%';
+        if (elGbp) elGbp.innerText = totalComercios > 0 ? Math.round((countGbp/totalComercios)*100) + '%' : '0%';
+        if (elTpv) elTpv.innerText = totalComercios > 0 ? Math.round((countTpv/totalComercios)*100) + '%' : '0%';
+
         // Calculate Percentages for Redes and IA (to match mockup visual style)
         this.realData.redesPct = {
             instagram: Math.round((this.realData.redes.instagram / totalComercios) * 100),
@@ -267,7 +290,7 @@ setupNavigation() {
                         tension: 0.4
                     }]
                 },
-                options: { responsive: true }
+                options: { maintainAspectRatio: false,  responsive: true }
             });
         }
 
@@ -290,7 +313,7 @@ setupNavigation() {
                         backgroundColor: ['#E1306C', '#1877F2', '#000000', '#EA4335', '#555']
                     }]
                 },
-                options: { indexAxis: 'y', responsive: true, plugins: { legend: { display: false } } }
+                options: { maintainAspectRatio: false,  indexAxis: 'y', responsive: true, plugins: { legend: { display: false } } }
             });
         }
 
@@ -312,7 +335,7 @@ setupNavigation() {
                         borderWidth: 0
                     }]
                 },
-                options: { responsive: true, cutout: '70%' }
+                options: { maintainAspectRatio: false,  responsive: true, cutout: '70%' }
             });
         }
 
@@ -335,7 +358,7 @@ setupNavigation() {
                         backgroundColor: '#00C27C'
                     }]
                 },
-                options: { responsive: true }
+                options: { maintainAspectRatio: false,  responsive: true }
             });
         }
 
@@ -359,12 +382,134 @@ setupNavigation() {
                         borderColor: '#111'
                     }]
                 },
-                options: { responsive: true }
+                options: { maintainAspectRatio: false,  responsive: true }
             });
         }
     }
 
 
+
+    processDetailedCounts() {
+        if (!this.rawData || this.rawData.length === 0) return;
+
+        this.allCounts = {};
+        const total = this.rawData.length;
+
+        this.rawData.forEach(comercio => {
+            const j = comercio.respuestas_json || {};
+            for (const key in j) {
+                if (!this.allCounts[key]) this.allCounts[key] = {};
+
+                const answer = j[key];
+                if (Array.isArray(answer)) {
+                    if (answer.length === 0) {
+                        this.allCounts[key]['Sin respuesta'] = (this.allCounts[key]['Sin respuesta'] || 0) + 1;
+                    } else {
+                        answer.forEach(val => {
+                            this.allCounts[key][val] = (this.allCounts[key][val] || 0) + 1;
+                        });
+                    }
+                } else {
+                    const cleanAnswer = answer ? answer.toString().trim() : 'Sin respuesta';
+                    this.allCounts[key][cleanAnswer] = (this.allCounts[key][cleanAnswer] || 0) + 1;
+                }
+            }
+        });
+    }
+
+    renderDetalles() {
+        const tbody = document.getElementById('detalle-tbody');
+        if (!tbody) return;
+        tbody.innerHTML = '';
+
+        if (!this.allCounts) return;
+        const total = this.rawData.length;
+
+        for (const [pregunta, counts] of Object.entries(this.allCounts)) {
+            let optionsHtml = '';
+            for (const [key, count] of Object.entries(counts)) {
+                if (key === '' || key === 'Sin respuesta') continue;
+                const pct = Math.round((count / total) * 100);
+                optionsHtml += `<span class="badge" style="background: #f1f1f1; color: #333; margin-right: 5px; margin-bottom: 5px; display: inline-block; border: 1px solid #ccc;">${this.escapeHTML(key)}: <strong>${count} (${pct}%)</strong></span>`;
+            }
+            if (optionsHtml === '') optionsHtml = '<span style="color:#aaa; font-style:italic;">No hay datos válidos</span>';
+
+            const tr = document.createElement('tr');
+            let formattedTitle = pregunta.replace(/_/g, ' ');
+            tr.innerHTML = `
+                <td style="font-weight: 600; width: 35%; text-transform: capitalize;">${this.escapeHTML(formattedTitle)}</td>
+                <td>${optionsHtml}</td>
+            `;
+            tbody.appendChild(tr);
+        }
+    }
+
+    renderOportunidades() {
+        const tbody = document.getElementById('oportunidades-tbody');
+        if (!tbody) return;
+        tbody.innerHTML = '';
+
+        if (!this.rawData || this.rawData.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">No hay datos reales.</td></tr>';
+            return;
+        }
+
+        this.rawData.forEach(c => {
+            const j = c.respuestas_json || {};
+
+            const nombre = c.nombre_puesto || 'Sin Nombre';
+            const tel = j.telefono || '';
+            const inv = j.inversion_total || 'Desconocida';
+
+            // Lógica para detectar oportunidad
+            let falta = 'Ninguna grave';
+            let accion = 'Mantenimiento';
+            let whatsappUrl = '#';
+
+            if (tel) {
+                // Formatear el teléfono eliminando espacios y asegurando el prefijo de españa si no lo tiene
+                let cleanTel = tel.replace(/[^0-9+]/g, '');
+                if (cleanTel.length === 9) cleanTel = '+34' + cleanTel; // Asumiendo número móvil España de 9 dígitos
+
+                let msj = `Hola, somos de Vegen Digital. Estuvimos viendo los resultados del relevamiento del Mercado Maravillas y notamos que `;
+
+                if (j.tiene_gbp && j.tiene_gbp.includes("No tengo")) {
+                    falta = "Sin Google Maps";
+                    accion = "Ofrecer Local SEO";
+                    msj += `aún no tienes presencia en Google Maps. ¡Nos encantaría ayudarte a captar más clientes locales!`;
+                } else if (j.usa_ia === "No" || j.usa_ia === "No sé qué es") {
+                    falta = "Sin IA";
+                    accion = "Ofrecer Capacitación/Bots";
+                    msj += `podrías optimizar mucho tu tiempo usando herramientas de Inteligencia Artificial. ¡Queremos asesorarte!`;
+                } else if (j.tiene_web && j.tiene_web.includes("No")) {
+                    falta = "Sin Web";
+                    accion = "Ofrecer Desarrollo Web";
+                    msj += `aún no cuentas con página web. ¡Podemos crear tu escaparate digital!`;
+                } else {
+                    falta = "Mejora General";
+                    accion = "Revisión Estratégica";
+                    msj += `estás haciendo un gran trabajo, pero siempre se puede mejorar. ¿Hablamos?`;
+                }
+
+                whatsappUrl = `https://wa.me/${cleanTel.replace('+', '')}?text=${encodeURIComponent(msj)}`;
+            } else {
+                falta = "Sin Teléfono";
+                accion = "Visitar Presencial";
+            }
+
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><strong>${this.escapeHTML(nombre)}</strong></td>
+                <td style="color: #ff5a5a;">${falta}</td>
+                <td>${this.escapeHTML(inv)}</td>
+                <td><span class="badge" style="background:#333; color:#fff;">${accion}</span></td>
+                <td>
+                    ${tel ? `<a href="${whatsappUrl}" target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Enviar Propuesta</a>` : '<span style="color:#888; font-size:12px;">No hay móvil</span>'}
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
 
     populateTables() {
         const tableRanking = document.querySelector('#table-ranking tbody');
