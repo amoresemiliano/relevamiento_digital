@@ -38,11 +38,11 @@
 <div class="hero">
   <div class="hero-inner">
     <div class="hero-label">Herramienta de diagnóstico</div>
-    <h1>Radiografía <em>Digital</em><br>de tu Puesto</h1>
-    <p>Completa este formulario para que podamos entender tu situación digital actual y ayudarte a crecer. Tus datos son confidenciales y solo se usarán internamente.</p>
+    <h1>Relevamiento <em>Digital</em></h1>
+    <p>Tus respuestas nos ayudarán a comprender el estado digital de tu comercio para ayudarte a crecer. Datos confidenciales y de uso interno.</p>
 
     <div class="indicators">
-      <div class="ind"><strong><10</strong><span>Minutos</span></div>
+      <div class="ind"><strong>&lt;10</strong><span>Minutos</span></div>
       <div class="ind"><strong>100%</strong><span>Confidencial</span></div>
     </div>
   </div>
@@ -50,165 +50,157 @@
 
 <div class="container">
   <form id="diagnostic-form" novalidate class="form-wrapper">
+
   <div class="block">
-        <div class="block-header">
+    <div class="block-header">
       <div class="block-title-row">
-        <div class="block-title">Identificación del Puesto</div>
+        <div class="block-title">Datos del Comercio</div>
         <div class="block-icon">🏪</div>
       </div>
-      <div class="block-desc">Datos básicos para identificar tu comercio en el mercado.</div>
+      <div class="block-desc">Identificación y presencia digital básica.</div>
       <div class="block-toggle-icon">▼</div>
     </div>
     <div class="block-content">
       <div class="q">
         <div class="q-title"><span class="q-num">01</span> Nombre del puesto / negocio <span class="q-req">*</span></div>
-        <div class="q-desc">Tal como aparece en el cartel o se conoce en el mercado</div>
         <div class="q-body">
-          <input name="nombre_puesto" placeholder="Ej: Frutería La Maravilla" required="" type="text"/>
+          <input name="nombre_puesto" placeholder="Ej. Frutería Los Ángeles" required="" type="text"/>
           <div class="err-msg">Este campo es requerido o inválido.</div>
         </div>
       </div>
       <div class="q">
-        <div class="q-title"><span class="q-num">02</span> Número o ubicación del puesto <span class="q-req">*</span></div>
-        <div class="q-desc">Pasillo, número de local o referencia interna del mercado</div>
+        <div class="q-title"><span class="q-num">02</span> Número de puesto(s) <span class="q-req">*</span></div>
         <div class="q-body">
-          <input name="ubicacion_puesto" placeholder="Ej: Puesto 14 · Pasillo Central" required="" type="text"/>
+          <input name="numero_puesto" placeholder="Ej. 142-143" required="" type="text"/>
           <div class="err-msg">Este campo es requerido o inválido.</div>
         </div>
       </div>
       <div class="q">
-        <div class="q-title"><span class="q-num">03</span> Categoría del negocio <span class="q-req">*</span></div>
-        <div class="q-desc">Selecciona la que mejor describe tu actividad</div>
+        <div class="q-title"><span class="q-num">03</span> Categoría principal <span class="q-req">*</span></div>
         <div class="q-body">
           <select name="categoria" required="">
-<option value="">— Selecciona una categoría —</option>
-<option>Carnicería / Charcutería</option>
-<option>Frutería / Verdulería</option>
-<option>Pescadería / Marisquería</option>
-<option>Panadería / Pastelería</option>
-<option>Bar / Cafetería / Restaurante</option>
-<option>Comida preparada / Take away</option>
-<option>Especias / Frutos secos</option>
-<option>Floristería</option>
-<option>Lácteos / Quesos</option>
-<option>Bodega / Vinos</option>
-<option>Delicatesen / Gourmet</option>
-<option>Otro</option>
-</select>
+            <option disabled="" selected="" value="">Selecciona tu especialidad...</option>
+            <option value="Frutería / Verdulería">Frutería / Verdulería</option>
+            <option value="Carnicería">Carnicería</option>
+            <option value="Pescadería">Pescadería</option>
+            <option value="Pollería / Huevería">Pollería / Huevería</option>
+            <option value="Charcutería / Quesería">Charcutería / Quesería</option>
+            <option value="Panadería / Pastelería">Panadería / Pastelería</option>
+            <option value="Ultramarinos / Alimentación">Ultramarinos / Alimentación</option>
+            <option value="Variantes / Encurtidos">Variantes / Encurtidos</option>
+            <option value="Dietética / Herbolario">Dietética / Herbolario</option>
+            <option value="Comida preparada / Take away">Comida preparada / Take away</option>
+            <option value="Hostelería (Bar / Cafetería)">Hostelería (Bar / Cafetería)</option>
+            <option value="Servicios (Arreglos, copias, etc.)">Servicios (Arreglos, llaves, etc.)</option>
+            <option value="Floristería">Floristería</option>
+            <option value="Otro">Otro</option>
+          </select>
           <div class="err-msg">Este campo es requerido o inválido.</div>
         </div>
       </div>
       <div class="q">
-        <div class="q-title"><span class="q-num">04</span> Nombre del responsable </div>
-        <div class="q-desc">Opcional · Solo para seguimiento interno de Vegen Digital</div>
+        <div class="q-title"><span class="q-num">04</span> Nombre y apellidos de la persona de contacto <span class="q-req">*</span></div>
         <div class="q-body">
-          <input name="responsable" placeholder="Tu nombre y apellido" type="text"/>
+          <input name="nombre_contacto" placeholder="Tu nombre completo" required="" type="text"/>
           <div class="err-msg">Este campo es requerido o inválido.</div>
         </div>
       </div>
       <div class="q">
-        <div class="q-title"><span class="q-num">05</span> Email de contacto </div>
-        <div class="q-desc">Para enviarte el informe individual de tu puesto</div>
+        <div class="q-title"><span class="q-num">05</span> Rol en el negocio <span class="q-req">*</span></div>
         <div class="q-body">
-          <input name="email" placeholder="tu@email.com" type="email"/>
+          <select name="rol_contacto" required="">
+            <option disabled="" selected="" value="">Selecciona tu rol...</option>
+            <option value="Propietario / Titular">Propietario / Titular</option>
+            <option value="Familiar del propietario">Familiar del propietario</option>
+            <option value="Encargado / Empleado">Encargado / Empleado</option>
+          </select>
           <div class="err-msg">Este campo es requerido o inválido.</div>
         </div>
       </div>
       <div class="q">
-        <div class="q-title"><span class="q-num">06</span> Teléfono de contacto </div>
-        <div class="q-desc">WhatsApp preferiblemente</div>
+        <div class="q-title"><span class="q-num">06</span> Teléfono móvil (Preferible con WhatsApp) <span class="q-req">*</span></div>
         <div class="q-body">
-          <input name="telefono" placeholder="+34 600 000 000" type="tel"/>
+          <input name="telefono" placeholder="+34 600 000 000" required="" type="tel"/>
           <div class="err-msg">Este campo es requerido o inválido.</div>
         </div>
       </div>
       <div class="q">
-        <div class="q-title"><span class="q-num">07</span> ¿Cuántas personas trabajan habitualmente en el puesto? <span class="q-req">*</span></div>
-        <div class="q-desc">Incluyendo titulares, empleados fijos y a tiempo parcial</div>
+        <div class="q-title"><span class="q-num">07</span> Correo electrónico <span class="q-req">*</span></div>
         <div class="q-body">
-          <div class="options-inline pill-group" id="q7-grp">
-<label class="pill"><input name="num_personas" type="radio" value="Solo yo"/><span>Solo yo</span></label>
-<label class="pill"><input name="num_personas" type="radio" value="2-3 personas"/><span>2–3 personas</span></label>
-<label class="pill"><input name="num_personas" type="radio" value="4-6 personas"/><span>4–6 personas</span></label>
-<label class="pill"><input name="num_personas" type="radio" value="7 o más"/><span>7 o más</span></label>
-</div>
+          <input name="email" placeholder="correo@ejemplo.com" required="" type="email"/>
           <div class="err-msg">Este campo es requerido o inválido.</div>
+        </div>
+      </div>
+      <div class="q">
+        <div class="q-title"><span class="q-num">08</span> ¿Tiene sitio web propio? <span class="q-req">*</span></div>
+        <div class="q-body">
+          <div class="pill-group">
+            <label class="pill"><input data-show="sub08" name="sitio_web" type="radio" value="Si"/><span>Sí</span></label>
+            <label class="pill"><input data-hide="sub08" name="sitio_web" type="radio" value="No"/><span>No</span></label>
+            <label class="pill"><input data-hide="sub08" name="sitio_web" type="radio" value="En desarrollo"/><span>En desarrollo</span></label>
+          </div>
+          <div class="err-msg">Este campo es requerido o inválido.</div>
+          
+          <div class="conditional-wrap" id="sub08" style="display:none;">
+            <div class="q-title" style="margin-top:15px; font-size:14px; font-weight:600;">Por favor, indique la URL de su sitio web:</div>
+            <input type="url" name="sitio_web_url" placeholder="https://www.ejemplo.com" />
+          </div>
+        </div>
+      </div>
+      <div class="q">
+        <div class="q-title"><span class="q-num">09</span> ¿Tiene perfil en Google Business Profile (Google Maps)? <span class="q-req">*</span></div>
+        <div class="q-body">
+          <div class="pill-group">
+            <label class="pill"><input data-show="sub09" name="google_maps" type="radio" value="Si optimizado"/><span>Sí, verificado y lo actualizo</span></label>
+            <label class="pill"><input data-show="sub09" name="google_maps" type="radio" value="Si abandonado"/><span>Sí, pero está abandonado</span></label>
+            <label class="pill"><input data-hide="sub09" name="google_maps" type="radio" value="No"/><span>No</span></label>
+            <label class="pill"><input data-hide="sub09" name="google_maps" type="radio" value="No se"/><span>No lo sé</span></label>
+          </div>
+          <div class="err-msg">Este campo es requerido o inválido.</div>
+          
+          <div class="conditional-wrap" id="sub09" style="display:none;">
+            <div class="q-title" style="margin-top:15px; font-size:14px; font-weight:600;">Por favor, indique la URL de su perfil (si la conoce):</div>
+            <input type="url" name="google_maps_url" placeholder="Ej: https://g.page/su-negocio" />
+          </div>
+        </div>
+      </div>
+      <div class="q">
+        <div class="q-title"><span class="q-num">10</span> ¿Recibe reseñas de clientes en internet? <span class="q-req">*</span></div>
+        <div class="q-body">
+          <div class="pill-group">
+            <label class="pill"><input name="resenas" type="radio" value="Frecuentemente las respondo"/><span>Sí, y las respondo</span></label>
+            <label class="pill"><input name="resenas" type="radio" value="Recibo pero no respondo"/><span>Sí, pero no suelo responder</span></label>
+            <label class="pill"><input name="resenas" type="radio" value="Muy pocas"/><span>Casi nunca / Muy pocas</span></label>
+          </div>
+          <div class="err-msg">Este campo es requerido o inválido.</div>
+        </div>
+      </div>
+      <div class="q">
+        <div class="q-title"><span class="q-num">11</span> ¿Aparece su negocio en otros directorios (Tripadvisor, páginas amarillas, etc.)? </div>
+        <div class="q-body">
+          <div class="pill-group">
+            <label class="pill"><input data-show="sub11" name="directorios" type="radio" value="Si"/><span>Sí</span></label>
+            <label class="pill"><input data-hide="sub11" name="directorios" type="radio" value="No"/><span>No</span></label>
+            <label class="pill"><input data-hide="sub11" name="directorios" type="radio" value="No se"/><span>No lo sé</span></label>
+          </div>
+          <div class="err-msg">Este campo es requerido o inválido.</div>
+          
+          <div class="conditional-wrap" id="sub11" style="display:none;">
+            <div class="q-title" style="margin-top:15px; font-size:14px; font-weight:600;">¿Cuáles?</div>
+            <input type="text" name="cuales_directorios" placeholder="Ej: Tripadvisor, Yelp..." />
+          </div>
         </div>
       </div>
     </div>
   </div>
+
   <div class="block">
-        <div class="block-header">
+    <div class="block-header">
       <div class="block-title-row">
-        <div class="block-title">Presencia Online Básica</div>
+        <div class="block-title">Presencia Online</div>
         <div class="block-icon">🌐</div>
       </div>
-      <div class="block-desc">Sitio web, Google Business, directorios y reputación digital.</div>
-      <div class="block-toggle-icon">▼</div>
-    </div>
-    <div class="block-content">
-      <div class="q">
-        <div class="q-title"><span class="q-num">08</span> ¿Tiene sitio web propio? <span class="q-req">*</span></div>
-        <div class="q-desc">Dominio propio, no solo una página en red social</div>
-        <div class="q-body">
-          <div class="pill-group" id="q8-grp">
-<label class="pill"><input data-show="sub8" name="tiene_web" type="radio" value="Si"/><span>Sí</span></label>
-<label class="pill"><input data-hide="sub8" name="tiene_web" type="radio" value="No"/><span>No</span></label>
-<label class="pill"><input data-show="sub8" name="tiene_web" type="radio" value="En construccion"/><span>En construcción</span></label>
-</div>
-          <div class="err-msg">Este campo es requerido o inválido.</div>
-        </div>
-      </div>
-      <div class="q">
-        <div class="q-title"><span class="q-num">09</span> ¿Tiene perfil en Google Business Profile? <span class="q-req">*</span></div>
-        <div class="q-desc">Aparece en Google Maps cuando alguien busca tu negocio</div>
-        <div class="q-body">
-          <div class="pill-group" id="q9-grp">
-<label class="pill"><input data-show="sub9" name="tiene_gbp" type="radio" value="Si"/><span>Sí</span></label>
-<label class="pill"><input data-hide="sub9" name="tiene_gbp" type="radio" value="No"/><span>No</span></label>
-<label class="pill"><input data-hide="sub9" name="tiene_gbp" type="radio" value="No se"/><span>No sé</span></label>
-</div>
-          <div class="err-msg">Este campo es requerido o inválido.</div>
-        </div>
-      </div>
-      <div class="q">
-        <div class="q-title"><span class="q-num">10</span> ¿Aparece en otros directorios o plataformas de reputación? </div>
-        <div class="q-desc">Selecciona todas las que aplican</div>
-        <div class="q-body">
-          <div class="options-group" id="q10-grp">
-<label class="opt-btn opt-check"><input name="directorios" type="checkbox" value="TripAdvisor"/><div class="opt-icon"></div>TripAdvisor</label>
-<label class="opt-btn opt-check"><input name="directorios" type="checkbox" value="Yelp"/><div class="opt-icon"></div>Yelp</label>
-<label class="opt-btn opt-check"><input name="directorios" type="checkbox" value="TheFork / El Tenedor"/><div class="opt-icon"></div>TheFork / El Tenedor</label>
-<label class="opt-btn opt-check"><input name="directorios" type="checkbox" value="Páginas Amarillas"/><div class="opt-icon"></div>Páginas Amarillas</label>
-<label class="opt-btn opt-check"><input name="directorios" type="checkbox" value="Foursquare"/><div class="opt-icon"></div>Foursquare</label>
-<label class="opt-btn opt-check"><input name="directorios" type="checkbox" value="Ninguno"/><div class="opt-icon"></div>Ninguno</label>
-<label class="opt-btn opt-check"><input name="directorios" type="checkbox" value="Otro"/><div class="opt-icon"></div>Otro</label>
-</div>
-          <div class="err-msg">Este campo es requerido o inválido.</div>
-        </div>
-      </div>
-      <div class="q">
-        <div class="q-title"><span class="q-num">11</span> ¿Tiene menú digital, carta QR o video-menú? </div>
-        <div class="q-desc">Para bares, cafeterías y puestos de comida preparada</div>
-        <div class="q-body">
-          <div class="options-group">
-<label class="opt-btn opt-check"><input name="menu_digital" type="checkbox" value="Carta QR"/><div class="opt-icon"></div>Carta QR (enlace o código QR)</label>
-<label class="opt-btn opt-check"><input name="menu_digital" type="checkbox" value="Menú digital en pantalla"/><div class="opt-icon"></div>Menú digital en pantalla (TV/monitor)</label>
-<label class="opt-btn opt-check"><input name="menu_digital" type="checkbox" value="Video menú"/><div class="opt-icon"></div>Video-menú</label>
-<label class="opt-btn opt-check"><input name="menu_digital" type="checkbox" value="No aplica"/><div class="opt-icon"></div>No aplica / No tengo</label>
-</div>
-          <div class="err-msg">Este campo es requerido o inválido.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="block">
-        <div class="block-header">
-      <div class="block-title-row">
-        <div class="block-title">Redes Sociales & Contenido</div>
-        <div class="block-icon">📱</div>
-      </div>
-      <div class="block-desc">Canales activos, frecuencia, responsable y producción audiovisual.</div>
+      <div class="block-desc">Redes sociales, publicidad y ventas online.</div>
       <div class="block-toggle-icon">▼</div>
     </div>
     <div class="block-content">
@@ -216,450 +208,346 @@
         <div class="q-title"><span class="q-num">12</span> ¿En qué redes sociales tiene presencia el negocio? <span class="q-req">*</span></div>
         <div class="q-desc">Selecciona todas las que aplican</div>
         <div class="q-body">
-          <div class="options-group" id="q12-grp">
-<label class="opt-btn opt-check" data-toggle-sub="sub12-ig"><input name="rrss" type="checkbox" value="Instagram"/><div class="opt-icon"></div>Instagram</label>
-<label class="opt-btn opt-check" data-toggle-sub="sub12-fb"><input name="rrss" type="checkbox" value="Facebook"/><div class="opt-icon"></div>Facebook</label>
-<label class="opt-btn opt-check" data-toggle-sub="sub12-tt"><input name="rrss" type="checkbox" value="TikTok"/><div class="opt-icon"></div>TikTok</label>
-<label class="opt-btn opt-check" data-toggle-sub="sub12-yt"><input name="rrss" type="checkbox" value="YouTube"/><div class="opt-icon"></div>YouTube</label>
-<label class="opt-btn opt-check" data-toggle-sub="sub12-li"><input name="rrss" type="checkbox" value="LinkedIn"/><div class="opt-icon"></div>LinkedIn</label>
-<label class="opt-btn opt-check"><input name="rrss" type="checkbox" value="Pinterest"/><div class="opt-icon"></div>Pinterest</label>
-<label class="opt-btn opt-check"><input name="rrss" type="checkbox" value="Telegram"/><div class="opt-icon"></div>Telegram</label>
-<label class="opt-btn opt-check"><input name="rrss" type="checkbox" value="X / Twitter"/><div class="opt-icon"></div>X / Twitter</label>
-<label class="opt-btn opt-check"><input name="rrss" type="checkbox" value="Ninguna"/><div class="opt-icon"></div>No tenemos redes sociales</label>
-</div>
+          <div class="options-group" id="q13-grp">
+            <label class="opt-btn opt-check"><input data-show="sub12a" name="redes" type="checkbox" value="Instagram"/><div class="opt-icon"></div>Instagram</label>
+            <label class="opt-btn opt-check"><input data-show="sub12b" name="redes" type="checkbox" value="Facebook"/><div class="opt-icon"></div>Facebook</label>
+            <label class="opt-btn opt-check"><input data-show="sub12c" name="redes" type="checkbox" value="TikTok"/><div class="opt-icon"></div>TikTok</label>
+            <label class="opt-btn opt-check"><input data-show="sub12d" name="redes" type="checkbox" value="X"/><div class="opt-icon"></div>X (Twitter)</label>
+            <label class="opt-btn opt-check"><input data-show="sub12e" name="redes" type="checkbox" value="Otra"/><div class="opt-icon"></div>Otra</label>
+            <label class="opt-btn opt-check"><input name="redes" type="checkbox" value="Ninguna"/><div class="opt-icon"></div>Ninguna</label>
+          </div>
           <div class="err-msg">Este campo es requerido o inválido.</div>
+          
+          <div class="conditional-wrap" id="sub12a" style="display:none;">
+            <div class="q-title" style="margin-top:15px; font-size:14px;">URL/Usuario de Instagram:</div>
+            <input type="text" name="url_instagram" placeholder="@usuario o URL" />
+          </div>
+          <div class="conditional-wrap" id="sub12b" style="display:none;">
+            <div class="q-title" style="margin-top:15px; font-size:14px;">URL/Usuario de Facebook:</div>
+            <input type="text" name="url_facebook" placeholder="@usuario o URL" />
+          </div>
+          <div class="conditional-wrap" id="sub12c" style="display:none;">
+            <div class="q-title" style="margin-top:15px; font-size:14px;">URL/Usuario de TikTok:</div>
+            <input type="text" name="url_tiktok" placeholder="@usuario o URL" />
+          </div>
+          <div class="conditional-wrap" id="sub12d" style="display:none;">
+            <div class="q-title" style="margin-top:15px; font-size:14px;">URL/Usuario de X:</div>
+            <input type="text" name="url_x" placeholder="@usuario o URL" />
+          </div>
+          <div class="conditional-wrap" id="sub12e" style="display:none;">
+            <div class="q-title" style="margin-top:15px; font-size:14px;">¿Cuál otra? Indique usuario o URL:</div>
+            <input type="text" name="url_otra_red" placeholder="Red y usuario" />
+          </div>
         </div>
       </div>
       <div class="q">
-        <div class="q-title"><span class="q-num">13</span> ¿Con qué frecuencia se publica contenido en redes? </div>
-        <div class="q-desc">En la red más activa del negocio</div>
+        <div class="q-title"><span class="q-num">13</span> ¿Con qué frecuencia publica contenido en sus redes? <span class="q-req">*</span></div>
         <div class="q-body">
           <div class="pill-group">
-<label class="pill"><input name="frecuencia_contenido" type="radio" value="No publicamos"/><span>No publicamos</span></label>
-<label class="pill"><input name="frecuencia_contenido" type="radio" value="Raramente"/><span>Raramente</span></label>
-<label class="pill"><input name="frecuencia_contenido" type="radio" value="1-2 veces al mes"/><span>1–2 veces/mes</span></label>
-<label class="pill"><input name="frecuencia_contenido" type="radio" value="1-2 veces a la semana"/><span>1–2 veces/semana</span></label>
-<label class="pill"><input name="frecuencia_contenido" type="radio" value="Casi todos los días"/><span>Casi a diario</span></label>
-</div>
+            <label class="pill"><input name="frecuencia_redes" type="radio" value="Diariamente"/><span>Diariamente</span></label>
+            <label class="pill"><input name="frecuencia_redes" type="radio" value="Varias por semana"/><span>Varias veces por semana</span></label>
+            <label class="pill"><input name="frecuencia_redes" type="radio" value="Una vez semana"/><span>Una vez a la semana</span></label>
+            <label class="pill"><input name="frecuencia_redes" type="radio" value="Esporadicamente"/><span>Esporádicamente / Rara vez</span></label>
+            <label class="pill"><input name="frecuencia_redes" type="radio" value="No publico"/><span>No publico</span></label>
+          </div>
           <div class="err-msg">Este campo es requerido o inválido.</div>
         </div>
       </div>
       <div class="q">
-        <div class="q-title"><span class="q-num">14</span> ¿Quién crea y sube el contenido? <span class="q-req">*</span></div>
+        <div class="q-title"><span class="q-num">14</span> ¿Quién se encarga de gestionar las redes sociales? <span class="q-req">*</span></div>
         <div class="q-body">
-          <div class="pill-group">
-<label class="pill"><input name="quien_contenido" type="radio" value="Yo mismo"/><span>Yo mismo/a</span></label>
-<label class="pill"><input name="quien_contenido" type="radio" value="Un empleado"/><span>Un empleado</span></label>
-<label class="pill"><input name="quien_contenido" type="radio" value="Un familiar"/><span>Un familiar</span></label>
-<label class="pill"><input name="quien_contenido" type="radio" value="Una agencia"/><span>Una agencia</span></label>
-<label class="pill"><input name="quien_contenido" type="radio" value="Un freelance"/><span>Un freelance</span></label>
-<label class="pill"><input name="quien_contenido" type="radio" value="Nadie"/><span>Nadie / no se publica</span></label>
-</div>
+          <select name="responsable_redes" required="">
+            <option disabled="" selected="" value="">Selecciona...</option>
+            <option value="Yo mismo">Yo mismo/a</option>
+            <option value="Empleado">Un empleado/a en su tiempo libre</option>
+            <option value="Agencia">Agencia externa / Freelance profesional</option>
+            <option value="Familiar">Un familiar / conocido</option>
+            <option value="Nadie">Nadie</option>
+          </select>
           <div class="err-msg">Este campo es requerido o inválido.</div>
         </div>
       </div>
       <div class="q">
-        <div class="q-title"><span class="q-num">15</span> ¿Quién hace las fotografías del negocio / productos? </div>
-        <div class="q-body">
-          <div class="pill-group">
-<label class="pill"><input name="quien_fotos" type="radio" value="Yo con el movil"/><span>Yo con el móvil</span></label>
-<label class="pill"><input name="quien_fotos" type="radio" value="Fotógrafo profesional"/><span>Fotógrafo profesional</span></label>
-<label class="pill"><input name="quien_fotos" type="radio" value="Un empleado"/><span>Un empleado</span></label>
-<label class="pill"><input name="quien_fotos" type="radio" value="Un familiar"/><span>Un familiar</span></label>
-<label class="pill"><input name="quien_fotos" type="radio" value="No tenemos fotos propias"/><span>No tenemos fotos propias</span></label>
-</div>
-          <div class="err-msg">Este campo es requerido o inválido.</div>
-        </div>
-      </div>
-      <div class="q">
-        <div class="q-title"><span class="q-num">16</span> ¿Se producen vídeos del negocio / productos? </div>
-        <div class="q-desc">Reels, TikToks, Shorts, vídeos de producto…</div>
-        <div class="q-body">
-          <div class="pill-group">
-<label class="pill"><input data-show="sub16" name="produce_video" type="radio" value="Si"/><span>Sí</span></label>
-<label class="pill"><input data-hide="sub16" name="produce_video" type="radio" value="No"/><span>No</span></label>
-</div>
-          <div class="err-msg">Este campo es requerido o inválido.</div>
-        </div>
-      </div>
-      <div class="q">
-        <div class="q-title"><span class="q-num">17</span> ¿Tiene plan de contenidos o calendario editorial? </div>
-        <div class="q-body">
-          <div class="pill-group">
-<label class="pill"><input name="plan_contenido" type="radio" value="Si formal"/><span>Sí, formal y documentado</span></label>
-<label class="pill"><input name="plan_contenido" type="radio" value="Si informal"/><span>Sí, informal</span></label>
-<label class="pill"><input name="plan_contenido" type="radio" value="No"/><span>No</span></label>
-</div>
-          <div class="err-msg">Este campo es requerido o inválido.</div>
-        </div>
-      </div>
-      <div class="q">
-        <div class="q-title"><span class="q-num">18</span> ¿Cuántos seguidores tiene aproximadamente en su red principal? </div>
-        <div class="q-body">
-          <div class="pill-group">
-<label class="pill"><input name="seguidores" type="radio" value="No tenemos redes"/><span>No tenemos</span></label>
-<label class="pill"><input name="seguidores" type="radio" value="Menos de 100"/><span>Menos de 100</span></label>
-<label class="pill"><input name="seguidores" type="radio" value="100-500"/><span>100–500</span></label>
-<label class="pill"><input name="seguidores" type="radio" value="500-2000"/><span>500–2.000</span></label>
-<label class="pill"><input name="seguidores" type="radio" value="2000-10000"/><span>2.000–10.000</span></label>
-<label class="pill"><input name="seguidores" type="radio" value="Más de 10000"/><span>+10.000</span></label>
-</div>
-          <div class="err-msg">Este campo es requerido o inválido.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="block">
-        <div class="block-header">
-      <div class="block-title-row">
-        <div class="block-title">Publicidad & Marketing Digital</div>
-        <div class="block-icon">🎯</div>
-      </div>
-      <div class="block-desc">Campañas de pago, email marketing y presupuesto.</div>
-      <div class="block-toggle-icon">▼</div>
-    </div>
-    <div class="block-content">
-      <div class="q">
-        <div class="q-title"><span class="q-num">19</span> ¿Ha realizado campañas en Meta Ads (Instagram / Facebook)? <span class="q-req">*</span></div>
-        <div class="q-body">
-          <div class="pill-group">
-<label class="pill"><input data-show="sub19" name="meta_ads" type="radio" value="Si actualmente"/><span>Sí, actualmente</span></label>
-<label class="pill"><input data-show="sub19" name="meta_ads" type="radio" value="Antes si"/><span>Antes sí, ahora no</span></label>
-<label class="pill"><input data-hide="sub19" name="meta_ads" type="radio" value="No nunca"/><span>No, nunca</span></label>
-</div>
-          <div class="err-msg">Este campo es requerido o inválido.</div>
-        </div>
-      </div>
-      <div class="q">
-        <div class="q-title"><span class="q-num">20</span> ¿Ha realizado campañas en Google Ads? </div>
-        <div class="q-desc">Search, Display, Maps, Shopping…</div>
-        <div class="q-body">
-          <div class="pill-group">
-<label class="pill"><input data-show="sub20" name="google_ads" type="radio" value="Si actualmente"/><span>Sí, actualmente</span></label>
-<label class="pill"><input data-show="sub20" name="google_ads" type="radio" value="Antes si"/><span>Antes sí, ahora no</span></label>
-<label class="pill"><input data-hide="sub20" name="google_ads" type="radio" value="No nunca"/><span>No, nunca</span></label>
-</div>
-          <div class="err-msg">Este campo es requerido o inválido.</div>
-        </div>
-      </div>
-      <div class="q">
-        <div class="q-title"><span class="q-num">21</span> ¿Realiza campañas en otras plataformas? </div>
+        <div class="q-title"><span class="q-num">15</span> ¿Qué tipo de contenido suele publicar? </div>
+        <div class="q-desc">Selecciona todas las que aplican</div>
         <div class="q-body">
           <div class="options-group">
-<label class="opt-btn opt-check"><input name="otras_ads" type="checkbox" value="TikTok Ads"/><div class="opt-icon"></div>TikTok Ads</label>
-<label class="opt-btn opt-check"><input name="otras_ads" type="checkbox" value="YouTube Ads"/><div class="opt-icon"></div>YouTube Ads</label>
-<label class="opt-btn opt-check"><input name="otras_ads" type="checkbox" value="Pinterest Ads"/><div class="opt-icon"></div>Pinterest Ads</label>
-<label class="opt-btn opt-check"><input name="otras_ads" type="checkbox" value="LinkedIn Ads"/><div class="opt-icon"></div>LinkedIn Ads</label>
-<label class="opt-btn opt-check"><input name="otras_ads" type="checkbox" value="Ninguna"/><div class="opt-icon"></div>Ninguna otra</label>
-</div>
+            <label class="opt-btn opt-check"><input name="tipo_contenido" type="checkbox" value="Fotos de productos"/><div class="opt-icon"></div>Fotos de los productos</label>
+            <label class="opt-btn opt-check"><input name="tipo_contenido" type="checkbox" value="Videos Reels Tiktok"/><div class="opt-icon"></div>Vídeos cortos (Reels, TikTok)</label>
+            <label class="opt-btn opt-check"><input name="tipo_contenido" type="checkbox" value="Ofertas y promos"/><div class="opt-icon"></div>Ofertas y promociones</label>
+            <label class="opt-btn opt-check"><input name="tipo_contenido" type="checkbox" value="El dia a dia"/><div class="opt-icon"></div>El día a día del puesto (detrás de escena)</label>
+            <label class="opt-btn opt-check"><input name="tipo_contenido" type="checkbox" value="Recetas o tips"/><div class="opt-icon"></div>Recetas, consejos o tips</label>
+          </div>
           <div class="err-msg">Este campo es requerido o inválido.</div>
         </div>
       </div>
       <div class="q">
-        <div class="q-title"><span class="q-num">22</span> ¿Tiene estrategia de email marketing o newsletter? </div>
+        <div class="q-title"><span class="q-num">16</span> ¿Cómo realiza sus fotos o vídeos? </div>
         <div class="q-body">
           <div class="pill-group">
-<label class="pill"><input data-show="sub22" name="email_marketing" type="radio" value="Si"/><span>Sí</span></label>
-<label class="pill"><input data-hide="sub22" name="email_marketing" type="radio" value="No"/><span>No</span></label>
-</div>
+            <label class="pill"><input name="calidad_fotos" type="radio" value="Movil rapido"/><span>Con el móvil de forma rápida</span></label>
+            <label class="pill"><input name="calidad_fotos" type="radio" value="Movil cuidado"/><span>Con el móvil, pero cuidando luz y detalles</span></label>
+            <label class="pill"><input name="calidad_fotos" type="radio" value="Camara"/><span>Tengo equipo / cámara</span></label>
+            <label class="pill"><input name="calidad_fotos" type="radio" value="Profesional"/><span>Contrato a un profesional</span></label>
+          </div>
           <div class="err-msg">Este campo es requerido o inválido.</div>
         </div>
       </div>
       <div class="q">
-        <div class="q-title"><span class="q-num">23</span> ¿Tiene un plan de marketing o comunicación documentado? </div>
+        <div class="q-title"><span class="q-num">17</span> ¿Ha realizado campañas en Meta Ads (Instagram / Facebook)? <span class="q-req">*</span></div>
         <div class="q-body">
           <div class="pill-group">
-<label class="pill"><input name="plan_marketing" type="radio" value="Si completo"/><span>Sí, completo</span></label>
-<label class="pill"><input name="plan_marketing" type="radio" value="Si básico"/><span>Sí, básico</span></label>
-<label class="pill"><input name="plan_marketing" type="radio" value="No"/><span>No</span></label>
-</div>
+            <label class="pill"><input name="meta_ads" type="radio" value="Si activas"/><span>Sí, actualmente tengo campañas</span></label>
+            <label class="pill"><input name="meta_ads" type="radio" value="Si puntuales"/><span>Sí, de forma puntual en el pasado</span></label>
+            <label class="pill"><input name="meta_ads" type="radio" value="Boton promocionar"/><span>Sólo uso el botón "Promocionar publicación"</span></label>
+            <label class="pill"><input name="meta_ads" type="radio" value="Nunca"/><span>No, nunca</span></label>
+          </div>
           <div class="err-msg">Este campo es requerido o inválido.</div>
         </div>
       </div>
       <div class="q">
-        <div class="q-title"><span class="q-num">24</span> ¿Cuánto invierte mensualmente en total en presencia y marketing digital? <span class="q-req">*</span></div>
-        <div class="q-desc">Campañas + herramientas + agencias + servicios</div>
+        <div class="q-title"><span class="q-num">18</span> ¿Ha realizado campañas en Google Ads? <span class="q-req">*</span></div>
         <div class="q-body">
           <div class="pill-group">
-<label class="pill"><input name="inversion_total" type="radio" value="0€"/><span>0€ (nada)</span></label>
-<label class="pill"><input name="inversion_total" type="radio" value="Menos de 100€"/><span>Menos de 100€</span></label>
-<label class="pill"><input name="inversion_total" type="radio" value="100-300€"/><span>100–300€</span></label>
-<label class="pill"><input name="inversion_total" type="radio" value="300-700€"/><span>300–700€</span></label>
-<label class="pill"><input name="inversion_total" type="radio" value="700-2000€"/><span>700–2.000€</span></label>
-<label class="pill"><input name="inversion_total" type="radio" value="Más de 2000€"/><span>+2.000€</span></label>
-</div>
+            <label class="pill"><input name="google_ads" type="radio" value="Si activas"/><span>Sí, actualmente</span></label>
+            <label class="pill"><input name="google_ads" type="radio" value="Si antes"/><span>Sí, en el pasado</span></label>
+            <label class="pill"><input name="google_ads" type="radio" value="Nunca"/><span>No, nunca</span></label>
+          </div>
           <div class="err-msg">Este campo es requerido o inválido.</div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="block">
-        <div class="block-header">
-      <div class="block-title-row">
-        <div class="block-title">Ventas Online & Delivery</div>
-        <div class="block-icon">🛒</div>
-      </div>
-      <div class="block-desc">Apps de reparto, tienda online, WhatsApp Business y canales de venta digital.</div>
-      <div class="block-toggle-icon">▼</div>
-    </div>
-    <div class="block-content">
       <div class="q">
-        <div class="q-title"><span class="q-num">25</span> ¿Vende a través de alguna app de delivery? <span class="q-req">*</span></div>
+        <div class="q-title"><span class="q-num">19</span> ¿Qué presupuesto mensual destina a publicidad digital? (Ads, patrocinios, etc.) <span class="q-req">*</span></div>
+        <div class="q-body">
+          <div class="pill-group">
+            <label class="pill"><input name="presupuesto_ads" type="radio" value="0"/><span>0€</span></label>
+            <label class="pill"><input name="presupuesto_ads" type="radio" value="Menos de 100€"/><span>Menos de 100€</span></label>
+            <label class="pill"><input name="presupuesto_ads" type="radio" value="100-300€"/><span>100€ – 300€</span></label>
+            <label class="pill"><input name="presupuesto_ads" type="radio" value="Mas de 300€"/><span>Más de 300€</span></label>
+          </div>
+          <div class="err-msg">Este campo es requerido o inválido.</div>
+        </div>
+      </div>
+      <div class="q">
+        <div class="q-title"><span class="q-num">20</span> ¿Mide el retorno de su inversión (ROI) en publicidad? </div>
+        <div class="q-body">
+          <div class="pill-group">
+            <label class="pill"><input name="mide_roi" type="radio" value="Si claro"/><span>Sí, lo tengo claro</span></label>
+            <label class="pill"><input name="mide_roi" type="radio" value="Intento"/><span>Lo intento, pero me cuesta</span></label>
+            <label class="pill"><input name="mide_roi" type="radio" value="No mido"/><span>No lo mido</span></label>
+          </div>
+          <div class="err-msg">Este campo es requerido o inválido.</div>
+        </div>
+      </div>
+      <div class="q">
+        <div class="q-title"><span class="q-num">21</span> ¿Envía correos electrónicos (Email Marketing) a sus clientes? <span class="q-req">*</span></div>
+        <div class="q-body">
+          <div class="pill-group">
+            <label class="pill"><input name="email_mkting" type="radio" value="Si regular"/><span>Sí, de forma regular</span></label>
+            <label class="pill"><input name="email_mkting" type="radio" value="A veces"/><span>A veces</span></label>
+            <label class="pill"><input name="email_mkting" type="radio" value="Tengo base pero no envio"/><span>Tengo sus emails, pero no les escribo</span></label>
+            <label class="pill"><input name="email_mkting" type="radio" value="No tengo base"/><span>No pido el email a mis clientes</span></label>
+          </div>
+          <div class="err-msg">Este campo es requerido o inválido.</div>
+        </div>
+      </div>
+      <div class="q">
+        <div class="q-title"><span class="q-num">22</span> ¿Vende a través de alguna app de delivery? <span class="q-req">*</span></div>
+        <div class="q-desc">Selecciona todas las que aplican</div>
         <div class="q-body">
           <div class="options-group">
-<label class="opt-btn opt-check" data-toggle-sub="sub25"><input name="delivery" type="checkbox" value="Glovo"/><div class="opt-icon"></div>Glovo</label>
-<label class="opt-btn opt-check" data-toggle-sub="sub25"><input name="delivery" type="checkbox" value="Uber Eats"/><div class="opt-icon"></div>Uber Eats</label>
-<label class="opt-btn opt-check" data-toggle-sub="sub25"><input name="delivery" type="checkbox" value="Just Eat"/><div class="opt-icon"></div>Just Eat</label>
-<label class="opt-btn opt-check" data-toggle-sub="sub25"><input name="delivery" type="checkbox" value="Deliveroo"/><div class="opt-icon"></div>Deliveroo</label>
-<label class="opt-btn opt-check" data-toggle-sub="sub25"><input name="delivery" type="checkbox" value="Bolt Food"/><div class="opt-icon"></div>Bolt Food</label>
-<label class="opt-btn opt-check" data-toggle-sub="sub25"><input name="delivery" type="checkbox" value="Otra"/><div class="opt-icon"></div>Otra plataforma</label>
-<label class="opt-btn opt-check"><input name="delivery" type="checkbox" value="No"/><div class="opt-icon"></div>No usamos delivery</label>
-</div>
+            <label class="opt-btn opt-check"><input name="delivery_apps" type="checkbox" value="Glovo"/><div class="opt-icon"></div>Glovo</label>
+            <label class="opt-btn opt-check"><input name="delivery_apps" type="checkbox" value="Uber Eats"/><div class="opt-icon"></div>Uber Eats</label>
+            <label class="opt-btn opt-check"><input name="delivery_apps" type="checkbox" value="Just Eat"/><div class="opt-icon"></div>Just Eat</label>
+            <label class="opt-btn opt-check"><input data-show="sub22a" name="delivery_apps" type="checkbox" value="Otra app especializada"/><div class="opt-icon"></div>Otra especializada (Ej. Mercado47)</label>
+            <label class="opt-btn opt-check"><input name="delivery_apps" type="checkbox" value="Ninguna"/><div class="opt-icon"></div>No vendo por delivery</label>
+          </div>
+          <div class="err-msg">Este campo es requerido o inválido.</div>
+          
+          <div class="conditional-wrap" id="sub22a" style="display:none;">
+            <div class="q-title" style="margin-top:15px; font-size:14px; font-weight:600;">¿Cuál otra?</div>
+            <input type="text" name="cual_delivery" placeholder="Nombre de la app de delivery" />
+          </div>
+        </div>
+      </div>
+      <div class="q">
+        <div class="q-title"><span class="q-num">23</span> ¿Qué porcentaje aproximado de sus ventas totales provienen del entorno online? <span class="q-req">*</span></div>
+        <div class="q-body">
+          <div class="pill-group">
+            <label class="pill"><input name="ventas_online_pct" type="radio" value="0"/><span>0%</span></label>
+            <label class="pill"><input name="ventas_online_pct" type="radio" value="1-10%"/><span>1% - 10%</span></label>
+            <label class="pill"><input name="ventas_online_pct" type="radio" value="11-30%"/><span>11% - 30%</span></label>
+            <label class="pill"><input name="ventas_online_pct" type="radio" value="31-50%"/><span>31% - 50%</span></label>
+            <label class="pill"><input name="ventas_online_pct" type="radio" value="Mas 50%"/><span>Más del 50%</span></label>
+          </div>
           <div class="err-msg">Este campo es requerido o inválido.</div>
         </div>
       </div>
       <div class="q">
-        <div class="q-title"><span class="q-num">26</span> ¿Recibe pedidos o consultas a través de WhatsApp? </div>
+        <div class="q-title"><span class="q-num">24</span> ¿Toma pedidos a través de WhatsApp? <span class="q-req">*</span></div>
         <div class="q-body">
           <div class="pill-group">
-<label class="pill"><input name="whatsapp_pedidos" type="radio" value="Si WhatsApp Business"/><span>Sí, con WhatsApp Business</span></label>
-<label class="pill"><input name="whatsapp_pedidos" type="radio" value="Si WhatsApp normal"/><span>Sí, con WhatsApp normal</span></label>
-<label class="pill"><input name="whatsapp_pedidos" type="radio" value="No"/><span>No</span></label>
-</div>
+            <label class="pill"><input name="whatsapp_pedidos" type="radio" value="Si WhatsApp Business"/><span>Sí, uso WhatsApp Business (Catálogo, auto-respuestas)</span></label>
+            <label class="pill"><input name="whatsapp_pedidos" type="radio" value="Si WhatsApp Normal"/><span>Sí, por WhatsApp normal</span></label>
+            <label class="pill"><input name="whatsapp_pedidos" type="radio" value="No"/><span>No tomo pedidos por WhatsApp</span></label>
+          </div>
           <div class="err-msg">Este campo es requerido o inválido.</div>
         </div>
       </div>
       <div class="q">
-        <div class="q-title"><span class="q-num">27</span> ¿Tiene tienda online propia (e-commerce)? </div>
+        <div class="q-title"><span class="q-num">25</span> Si tiene tienda online propia, ¿con qué plataforma está creada? </div>
         <div class="q-body">
-          <div class="pill-group">
-<label class="pill"><input data-show="sub27" name="ecommerce_propio" type="radio" value="Si"/><span>Sí</span></label>
-<label class="pill"><input data-hide="sub27" name="ecommerce_propio" type="radio" value="No"/><span>No</span></label>
-<label class="pill"><input data-show="sub27" name="ecommerce_propio" type="radio" value="En construccion"/><span>En construcción</span></label>
-</div>
-          <div class="err-msg">Este campo es requerido o inválido.</div>
+          <select name="plataforma_ecommerce">
+            <option disabled="" selected="" value="">Selecciona (o deja en blanco si no tienes)...</option>
+            <option value="Shopify">Shopify</option>
+            <option value="WooCommerce">WooCommerce (WordPress)</option>
+            <option value="PrestaShop">PrestaShop</option>
+            <option value="Wix">Wix</option>
+            <option value="Desarrollo a medida">Desarrollo a medida</option>
+            <option value="Otra">Otra</option>
+            <option value="No tengo">No tengo tienda online</option>
+          </select>
         </div>
       </div>
       <div class="q">
-        <div class="q-title"><span class="q-num">28</span> ¿Tiene app móvil propia del negocio? </div>
+        <div class="q-title"><span class="q-num">26</span> ¿Ofrece opciones de "Click & Collect" (comprar online y recoger en el puesto)? <span class="q-req">*</span></div>
         <div class="q-body">
           <div class="pill-group">
-<label class="pill"><input name="app_propia" type="radio" value="Si"/><span>Sí</span></label>
-<label class="pill"><input name="app_propia" type="radio" value="No"/><span>No</span></label>
-<label class="pill"><input name="app_propia" type="radio" value="En desarrollo"/><span>En desarrollo</span></label>
-</div>
-          <div class="err-msg">Este campo es requerido o inválido.</div>
-        </div>
-      </div>
-      <div class="q">
-        <div class="q-title"><span class="q-num">29</span> ¿Tiene sistema de reservas o citas online? </div>
-        <div class="q-body">
-          <div class="pill-group">
-<label class="pill"><input name="reservas_online" type="radio" value="Si"/><span>Sí</span></label>
-<label class="pill"><input name="reservas_online" type="radio" value="No"/><span>No</span></label>
-</div>
-          <div class="err-msg">Este campo es requerido o inválido.</div>
-        </div>
-      </div>
-      <div class="q">
-        <div class="q-title"><span class="q-num">30</span> ¿Tiene programa de fidelización digital o tarjeta de puntos? </div>
-        <div class="q-body">
-          <div class="pill-group">
-<label class="pill"><input name="fidelizacion" type="radio" value="Si digital"/><span>Sí, digital (app / QR)</span></label>
-<label class="pill"><input name="fidelizacion" type="radio" value="Si física"/><span>Sí, física (tarjeta)</span></label>
-<label class="pill"><input name="fidelizacion" type="radio" value="No"/><span>No</span></label>
-</div>
+            <label class="pill"><input name="click_collect" type="radio" value="Si"/><span>Sí</span></label>
+            <label class="pill"><input name="click_collect" type="radio" value="No, pero me gustaria"/><span>No, pero me gustaría</span></label>
+            <label class="pill"><input name="click_collect" type="radio" value="No me interesa"/><span>No, y no me interesa</span></label>
+          </div>
           <div class="err-msg">Este campo es requerido o inválido.</div>
         </div>
       </div>
     </div>
   </div>
+
   <div class="block">
-        <div class="block-header">
+    <div class="block-header">
       <div class="block-title-row">
-        <div class="block-title">Sistemas de Gestión & Tecnología Interna</div>
+        <div class="block-title">Herramientas Digitales</div>
         <div class="block-icon">⚙️</div>
       </div>
-      <div class="block-desc">TPV, inventario, facturación, CRM y herramientas de comunicación.</div>
+      <div class="block-desc">Sistemas de gestión e Inteligencia Artificial.</div>
       <div class="block-toggle-icon">▼</div>
     </div>
     <div class="block-content">
       <div class="q">
-        <div class="q-title"><span class="q-num">31</span> ¿Qué tipo de sistema TPV (Punto de Venta) utiliza? <span class="q-req">*</span></div>
+        <div class="q-title"><span class="q-num">27</span> ¿Qué tipo de sistema TPV (Punto de Venta) utiliza? <span class="q-req">*</span></div>
+        <div class="q-body">
+          <div class="pill-group">
+            <label class="pill"><input name="tpv" type="radio" value="TPV Inteligente"/><span>TPV Inteligente (Conectado a inventario/web)</span></label>
+            <label class="pill"><input name="tpv" type="radio" value="Caja registradora tradicional"/><span>Caja registradora tradicional (Solo tickets)</span></label>
+            <label class="pill"><input name="tpv" type="radio" value="Sin sistema"/><span>Caja manual / Sin sistema</span></label>
+          </div>
+          <div class="err-msg">Este campo es requerido o inválido.</div>
+        </div>
+      </div>
+      <div class="q">
+        <div class="q-title"><span class="q-num">28</span> ¿Cómo gestiona su inventario y compras a proveedores? <span class="q-req">*</span></div>
+        <div class="q-body">
+          <div class="pill-group">
+            <label class="pill"><input name="gestion_inventario" type="radio" value="Software ERP"/><span>Software especializado (ERP)</span></label>
+            <label class="pill"><input name="gestion_inventario" type="radio" value="Excel"/><span>Excel u hojas de cálculo</span></label>
+            <label class="pill"><input name="gestion_inventario" type="radio" value="Papel y memoria"/><span>Papel, boli y memoria</span></label>
+          </div>
+          <div class="err-msg">Este campo es requerido o inválido.</div>
+        </div>
+      </div>
+      <div class="q">
+        <div class="q-title"><span class="q-num">29</span> ¿Tiene informatizada la facturación / contabilidad? <span class="q-req">*</span></div>
+        <div class="q-body">
+          <div class="pill-group">
+            <label class="pill"><input name="informatizada_conta" type="radio" value="Si conectada"/><span>Sí, yo lo gestiono con mi programa</span></label>
+            <label class="pill"><input name="informatizada_conta" type="radio" value="Gestoria"/><span>Se lo paso todo a la gestoría</span></label>
+            <label class="pill"><input name="informatizada_conta" type="radio" value="A mano"/><span>Lo hago a mano</span></label>
+          </div>
+          <div class="err-msg">Este campo es requerido o inválido.</div>
+        </div>
+      </div>
+      <div class="q">
+        <div class="q-title"><span class="q-num">30</span> ¿Ofrece opciones de pago digital? (Bizum, Tarjeta, NFC) <span class="q-req">*</span></div>
         <div class="q-body">
           <div class="options-group">
-<label class="opt-btn"><input data-hide="sub31" name="tipo_tpv" type="radio" value="Caja registradora tradicional"/><div class="opt-icon"></div>Caja registradora tradicional</label>
-<label class="opt-btn"><input data-show="sub31" name="tipo_tpv" type="radio" value="TPV con software"/><div class="opt-icon"></div>TPV con software específico</label>
-<label class="opt-btn"><input data-show="sub31" name="tipo_tpv" type="radio" value="App en tablet/móvil"/><div class="opt-icon"></div>App en tablet / móvil</label>
-<label class="opt-btn"><input name="tipo_tpv" type="radio" value="Ninguno"/><div class="opt-icon"></div>Ninguno</label>
-</div>
+            <label class="opt-btn opt-check"><input name="pago_digital" type="checkbox" value="Tarjeta"/><div class="opt-icon"></div>Tarjeta (Datáfono)</label>
+            <label class="opt-btn opt-check"><input name="pago_digital" type="checkbox" value="Bizum"/><div class="opt-icon"></div>Bizum</label>
+            <label class="opt-btn opt-check"><input data-show="sub30a" name="pago_digital" type="checkbox" value="Otras pasarelas"/><div class="opt-icon"></div>Otros (Google Pay, Apple Pay)</label>
+            <label class="opt-btn opt-check"><input name="pago_digital" type="checkbox" value="Solo efectivo"/><div class="opt-icon"></div>Solo efectivo</label>
+          </div>
           <div class="err-msg">Este campo es requerido o inválido.</div>
+          
+          <div class="conditional-wrap" id="sub30a" style="display:none;">
+            <div class="q-title" style="margin-top:15px; font-size:14px; font-weight:600;">¿Cuáles otros?</div>
+            <input type="text" name="cuales_pagos" placeholder="Ej: Google Pay, Apple Pay, etc." />
+          </div>
         </div>
       </div>
       <div class="q">
-        <div class="q-title"><span class="q-num">32</span> ¿Gestiona el inventario / stock con alguna herramienta digital? </div>
+        <div class="q-title"><span class="q-num">31</span> ¿Cuenta con un sistema (CRM) para registrar a sus clientes y sus hábitos de compra? <span class="q-req">*</span></div>
         <div class="q-body">
           <div class="pill-group">
-<label class="pill"><input data-show="sub32" name="gestion_stock" type="radio" value="Si"/><span>Sí</span></label>
-<label class="pill"><input data-hide="sub32" name="gestion_stock" type="radio" value="No"/><span>No, de forma manual</span></label>
-</div>
+            <label class="pill"><input name="crm" type="radio" value="Si profesional"/><span>Sí, programa CRM</span></label>
+            <label class="pill"><input name="crm" type="radio" value="Excel o libreta"/><span>Sí, Excel o libreta</span></label>
+            <label class="pill"><input name="crm" type="radio" value="No"/><span>No, no registro datos de clientes</span></label>
+          </div>
           <div class="err-msg">Este campo es requerido o inválido.</div>
         </div>
       </div>
       <div class="q">
-        <div class="q-title"><span class="q-num">33</span> ¿Cómo gestiona la facturación? <span class="q-req">*</span></div>
+        <div class="q-title"><span class="q-num">32</span> ¿Utiliza herramientas de comunicación interna con sus empleados? </div>
+        <div class="q-body">
+          <select name="comunicacion_interna">
+            <option disabled="" selected="" value="">Selecciona...</option>
+            <option value="WhatsApp">Grupo de WhatsApp</option>
+            <option value="Slack / Teams">Slack, Teams o similar</option>
+            <option value="Solo en persona">Solo en persona / Teléfono</option>
+            <option value="No tengo empleados">No tengo empleados</option>
+          </select>
+        </div>
+      </div>
+      <div class="q">
+        <div class="q-title"><span class="q-num">33</span> ¿Utiliza herramientas de Inteligencia Artificial en su negocio? <span class="q-req">*</span></div>
+        <div class="q-desc">Ej: ChatGPT, Claude, Midjourney, etc.</div>
+        <div class="q-body">
+          <div class="pill-group">
+            <label class="pill"><input name="uso_ia" type="radio" value="Si bastante"/><span>Sí, a menudo (textos, ideas, imágenes)</span></label>
+            <label class="pill"><input name="uso_ia" type="radio" value="Alguna vez"/><span>La he probado alguna vez</span></label>
+            <label class="pill"><input name="uso_ia" type="radio" value="Se que es pero no uso"/><span>Sé qué es pero no sé cómo aplicarla</span></label>
+            <label class="pill"><input name="uso_ia" type="radio" value="No se que es"/><span>No sé qué es / No me interesa</span></label>
+          </div>
+          <div class="err-msg">Este campo es requerido o inválido.</div>
+        </div>
+      </div>
+      <div class="q">
+        <div class="q-title"><span class="q-num">34</span> Si la usa o la usara, ¿para qué le vería más utilidad? </div>
         <div class="q-body">
           <div class="options-group">
-<label class="opt-btn"><input data-show="sub33" name="facturacion" type="radio" value="Software facturación"/><div class="opt-icon"></div>Software de facturación propio</label>
-<label class="opt-btn"><input data-hide="sub33" name="facturacion" type="radio" value="Gestoría externa"/><div class="opt-icon"></div>Gestoría / asesoría externa</label>
-<label class="opt-btn"><input data-hide="sub33" name="facturacion" type="radio" value="Excel"/><div class="opt-icon"></div>Excel / Google Sheets</label>
-<label class="opt-btn"><input data-hide="sub33" name="facturacion" type="radio" value="Manual"/><div class="opt-icon"></div>Manual (papel)</label>
-</div>
-          <div class="err-msg">Este campo es requerido o inválido.</div>
+            <label class="opt-btn opt-check"><input name="utilidad_ia" type="checkbox" value="Textos redes sociales"/><div class="opt-icon"></div>Escribir textos para redes sociales</label>
+            <label class="opt-btn opt-check"><input name="utilidad_ia" type="checkbox" value="Ideas de recetas/productos"/><div class="opt-icon"></div>Ideas de recetas o nuevos productos</label>
+            <label class="opt-btn opt-check"><input name="utilidad_ia" type="checkbox" value="Atencion al cliente (Bots)"/><div class="opt-icon"></div>Respuestas automáticas a clientes</label>
+            <label class="opt-btn opt-check"><input name="utilidad_ia" type="checkbox" value="Analisis de ventas"/><div class="opt-icon"></div>Análisis de mis ventas o stock</label>
+          </div>
         </div>
       </div>
       <div class="q">
-        <div class="q-title"><span class="q-num">34</span> ¿Utiliza herramienta de gestión financiera o contabilidad digital? </div>
+        <div class="q-title"><span class="q-num">35</span> ¿Revisa periódicamente estadísticas o métricas de su negocio? <span class="q-req">*</span></div>
         <div class="q-body">
           <div class="pill-group">
-<label class="pill"><input data-show="sub34" name="gestion_financiera" type="radio" value="Si"/><span>Sí</span></label>
-<label class="pill"><input data-hide="sub34" name="gestion_financiera" type="radio" value="No"/><span>No</span></label>
-</div>
-          <div class="err-msg">Este campo es requerido o inválido.</div>
-        </div>
-      </div>
-      <div class="q">
-        <div class="q-title"><span class="q-num">35</span> ¿Gestiona pedidos a proveedores de forma digital? </div>
-        <div class="q-body">
-          <div class="pill-group">
-<label class="pill"><input name="pedidos_proveedores" type="radio" value="Email"/><span>Email</span></label>
-<label class="pill"><input name="pedidos_proveedores" type="radio" value="WhatsApp"/><span>WhatsApp</span></label>
-<label class="pill"><input name="pedidos_proveedores" type="radio" value="Plataforma del proveedor"/><span>Plataforma del proveedor</span></label>
-<label class="pill"><input name="pedidos_proveedores" type="radio" value="Sistema propio"/><span>Sistema propio</span></label>
-<label class="pill"><input name="pedidos_proveedores" type="radio" value="Teléfono / presencial"/><span>Teléfono / presencial</span></label>
-</div>
-          <div class="err-msg">Este campo es requerido o inválido.</div>
-        </div>
-      </div>
-      <div class="q">
-        <div class="q-title"><span class="q-num">36</span> ¿Tiene algún sistema de gestión de clientes (CRM)? </div>
-        <div class="q-body">
-          <div class="pill-group">
-<label class="pill"><input name="crm" type="radio" value="Si software"/><span>Sí, software CRM</span></label>
-<label class="pill"><input name="crm" type="radio" value="Si Excel"/><span>Sí, Excel/Sheets</span></label>
-<label class="pill"><input name="crm" type="radio" value="No"/><span>No</span></label>
-</div>
-          <div class="err-msg">Este campo es requerido o inválido.</div>
-        </div>
-      </div>
-      <div class="q">
-        <div class="q-title"><span class="q-num">37</span> ¿Usa sistema de gestión de RRHH o nóminas? </div>
-        <div class="q-body">
-          <div class="pill-group">
-<label class="pill"><input name="rrhh" type="radio" value="Si software"/><span>Sí, software</span></label>
-<label class="pill"><input name="rrhh" type="radio" value="Si gestoría"/><span>Sí, vía gestoría</span></label>
-<label class="pill"><input name="rrhh" type="radio" value="No aplica"/><span>No aplica (trabajo solo/a)</span></label>
-<label class="pill"><input name="rrhh" type="radio" value="No"/><span>No</span></label>
-</div>
-          <div class="err-msg">Este campo es requerido o inválido.</div>
-        </div>
-      </div>
-      <div class="q">
-        <div class="q-title"><span class="q-num">38</span> ¿Tiene teléfono fijo con centralita digital o integración VoIP? </div>
-        <div class="q-desc">Grabación de llamadas, buzón digital, desvío automático…</div>
-        <div class="q-body">
-          <div class="pill-group">
-<label class="pill"><input name="telefono_digital" type="radio" value="Si VoIP"/><span>Sí, VoIP / centralita digital</span></label>
-<label class="pill"><input name="telefono_digital" type="radio" value="Teléfono fijo tradicional"/><span>Teléfono fijo tradicional</span></label>
-<label class="pill"><input name="telefono_digital" type="radio" value="Solo móvil"/><span>Solo móvil</span></label>
-<label class="pill"><input name="telefono_digital" type="radio" value="Sin teléfono"/><span>No tenemos teléfono</span></label>
-</div>
-          <div class="err-msg">Este campo es requerido o inválido.</div>
-        </div>
-      </div>
-      <div class="q">
-        <div class="q-title"><span class="q-num">39</span> ¿Tiene chatbot o asistente automático en WhatsApp o web? </div>
-        <div class="q-body">
-          <div class="pill-group">
-<label class="pill"><input name="chatbot" type="radio" value="Si WhatsApp"/><span>Sí, en WhatsApp</span></label>
-<label class="pill"><input name="chatbot" type="radio" value="Si web"/><span>Sí, en la web</span></label>
-<label class="pill"><input name="chatbot" type="radio" value="Si ambos"/><span>En ambos</span></label>
-<label class="pill"><input name="chatbot" type="radio" value="No"/><span>No</span></label>
-</div>
+            <label class="pill"><input name="revisa_metricas" type="radio" value="Si semanal/mensual"/><span>Sí, semanal o mensualmente</span></label>
+            <label class="pill"><input name="revisa_metricas" type="radio" value="Pocas veces"/><span>Pocas veces al año</span></label>
+            <label class="pill"><input name="revisa_metricas" type="radio" value="Solo facturacion"/><span>Solo miro la facturación total a final de mes</span></label>
+          </div>
           <div class="err-msg">Este campo es requerido o inválido.</div>
         </div>
       </div>
     </div>
   </div>
+
   <div class="block">
-        <div class="block-header">
+    <div class="block-header">
       <div class="block-title-row">
-        <div class="block-title">Inteligencia Artificial & Analítica de Datos</div>
-        <div class="block-icon">🤖</div>
-      </div>
-      <div class="block-desc">Uso de IA, herramientas de medición y toma de decisiones basada en datos.</div>
-      <div class="block-toggle-icon">▼</div>
-    </div>
-    <div class="block-content">
-      <div class="q">
-        <div class="q-title"><span class="q-num">40</span> ¿Utiliza herramientas de Inteligencia Artificial en su negocio? <span class="q-req">*</span></div>
-        <div class="q-desc">ChatGPT, Gemini, Copilot, Midjourney, herramientas con IA integrada…</div>
-        <div class="q-body">
-          <div class="pill-group">
-<label class="pill"><input data-show="sub40" name="usa_ia" type="radio" value="Si habitualmente"/><span>Sí, habitualmente</span></label>
-<label class="pill"><input data-show="sub40" name="usa_ia" type="radio" value="Si ocasionalmente"/><span>Sí, ocasionalmente</span></label>
-<label class="pill"><input data-hide="sub40" name="usa_ia" type="radio" value="No"/><span>No</span></label>
-</div>
-          <div class="err-msg">Este campo es requerido o inválido.</div>
-        </div>
-      </div>
-      <div class="q">
-        <div class="q-title"><span class="q-num">41</span> ¿Usa IA en su teléfono personal para tareas del negocio? </div>
-        <div class="q-desc">Siri, Google Assistant, apps con IA, transcripción, traducción…</div>
-        <div class="q-body">
-          <div class="pill-group">
-<label class="pill"><input name="ia_movil" type="radio" value="Si frecuentemente"/><span>Sí, frecuentemente</span></label>
-<label class="pill"><input name="ia_movil" type="radio" value="Si ocasionalmente"/><span>Sí, ocasionalmente</span></label>
-<label class="pill"><input name="ia_movil" type="radio" value="No"/><span>No</span></label>
-</div>
-          <div class="err-msg">Este campo es requerido o inválido.</div>
-        </div>
-      </div>
-      <div class="q">
-        <div class="q-title"><span class="q-num">42</span> ¿Mide el rendimiento de su negocio con herramientas digitales? <span class="q-req">*</span></div>
-        <div class="q-body">
-          <div class="options-group">
-<label class="opt-btn opt-check"><input name="herramientas_analitica" type="checkbox" value="Google Analytics"/><div class="opt-icon"></div>Google Analytics / Search Console</label>
-<label class="opt-btn opt-check"><input name="herramientas_analitica" type="checkbox" value="Meta Insights"/><div class="opt-icon"></div>Meta Business Suite / Insights</label>
-<label class="opt-btn opt-check"><input name="herramientas_analitica" type="checkbox" value="Reportes TPV"/><div class="opt-icon"></div>Reportes del TPV</label>
-<label class="opt-btn opt-check"><input name="herramientas_analitica" type="checkbox" value="Excel / Sheets"/><div class="opt-icon"></div>Excel / Google Sheets</label>
-<label class="opt-btn opt-check"><input name="herramientas_analitica" type="checkbox" value="Google Business Insights"/><div class="opt-icon"></div>Google Business Insights</label>
-<label class="opt-btn opt-check"><input name="herramientas_analitica" type="checkbox" value="Ninguna"/><div class="opt-icon"></div>Ninguna / no mido nada</label>
-</div>
-          <div class="err-msg">Este campo es requerido o inválido.</div>
-        </div>
-      </div>
-      <div class="q">
-        <div class="q-title"><span class="q-num">43</span> ¿Tiene instalado el Píxel de Meta o Google Tag en su web? </div>
-        <div class="q-desc">Para medir conversiones y hacer remarketing</div>
-        <div class="q-body">
-          <div class="pill-group">
-<label class="pill"><input name="pixel_tag" type="radio" value="Si Meta Pixel"/><span>Sí, Píxel de Meta</span></label>
-<label class="pill"><input name="pixel_tag" type="radio" value="Si Google Tag"/><span>Sí, Google Tag</span></label>
-<label class="pill"><input name="pixel_tag" type="radio" value="Ambos"/><span>Ambos</span></label>
-<label class="pill"><input name="pixel_tag" type="radio" value="No"/><span>No</span></label>
-<label class="pill"><input name="pixel_tag" type="radio" value="No se"/><span>No sé</span></label>
-<label class="pill"><input name="pixel_tag" type="radio" value="No tengo web"/><span>No tengo web</span></label>
-</div>
-          <div class="err-msg">Este campo es requerido o inválido.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="block">
-        <div class="block-header">
-      <div class="block-title-row">
-        <div class="block-title">Percepción, Actitud & Necesidades</div>
+        <div class="block-title">Percepción & Necesidades</div>
         <div class="block-icon">💡</div>
       </div>
       <div class="block-desc">Tu valoración subjetiva, barreras y prioridades de digitalización.</div>
@@ -667,9 +555,10 @@
     </div>
     <div class="block-content">
       <div class="q">
-        <div class="q-title"><span class="q-num">44</span> ¿Qué importancia le da al posicionamiento online de su negocio? <span class="q-req">*</span></div>
+        <div class="q-title"><span class="q-num">36</span> ¿Qué importancia le da al posicionamiento online de su negocio? <span class="q-req">*</span></div>
+        <div class="q-desc">Del 1 (Nada importante) al 10 (Muy importante)</div>
         <div class="q-body">
-          <div class="scale-wrap" id="scale44">
+          <div class="scale-wrap">
 <div class="scale-btn" data-group="importancia_online" data-val="1">1</div>
 <div class="scale-btn" data-group="importancia_online" data-val="2">2</div>
 <div class="scale-btn" data-group="importancia_online" data-val="3">3</div>
@@ -685,20 +574,7 @@
         </div>
       </div>
       <div class="q">
-        <div class="q-title"><span class="q-num">45</span> ¿Cree que su presencia digital actual refleja bien lo que ofrece? </div>
-        <div class="q-body">
-          <div class="scale-wrap">
-<div class="scale-btn" data-group="refleja_oferta" data-val="1">1</div>
-<div class="scale-btn" data-group="refleja_oferta" data-val="2">2</div>
-<div class="scale-btn" data-group="refleja_oferta" data-val="3">3</div>
-<div class="scale-btn" data-group="refleja_oferta" data-val="4">4</div>
-<div class="scale-btn" data-group="refleja_oferta" data-val="5">5</div>
-</div><div class="scale-labels" style="max-width:220px;"><span>Para nada</span><span>Perfectamente</span></div><input id="refleja_oferta_val" name="refleja_oferta" type="hidden"/>
-          <div class="err-msg">Este campo es requerido o inválido.</div>
-        </div>
-      </div>
-      <div class="q">
-        <div class="q-title"><span class="q-num">46</span> ¿Cuál es el mayor obstáculo para mejorar su presencia digital? </div>
+        <div class="q-title"><span class="q-num">37</span> ¿Cuál es el mayor obstáculo para mejorar su presencia digital? </div>
         <div class="q-desc">Selecciona todas las que aplican</div>
         <div class="q-body">
           <div class="options-group">
@@ -708,43 +584,34 @@
 <label class="opt-btn opt-check"><input name="obstaculos" type="checkbox" value="No creo que sea necesario"/><div class="opt-icon"></div>No creo que sea necesario para mi negocio</label>
 <label class="opt-btn opt-check"><input name="obstaculos" type="checkbox" value="Falta de personal"/><div class="opt-icon"></div>Falta de personal capacitado</label>
 <label class="opt-btn opt-check"><input name="obstaculos" type="checkbox" value="Malas experiencias previas"/><div class="opt-icon"></div>Malas experiencias previas con agencias</label>
-<label class="opt-btn opt-check"><input name="obstaculos" type="checkbox" value="Otro"/><div class="opt-icon"></div>Otro</label>
+<label class="opt-btn opt-check"><input data-show="sub37a" name="obstaculos" type="checkbox" value="Otro"/><div class="opt-icon"></div>Otro</label>
 </div>
           <div class="err-msg">Este campo es requerido o inválido.</div>
+          
+          <div class="conditional-wrap" id="sub37a" style="display:none;">
+            <div class="q-title" style="margin-top:15px; font-size:14px; font-weight:600;">¿Cuál otro obstáculo?</div>
+            <input type="text" name="cual_obstaculo" placeholder="Especificar..." />
+          </div>
         </div>
       </div>
       <div class="q">
-        <div class="q-title"><span class="q-num">47</span> ¿Ha contratado alguna vez servicios de marketing o digitalización? <span class="q-req">*</span></div>
+        <div class="q-title"><span class="q-num">38</span> ¿Ha contratado alguna vez servicios de marketing o digitalización? <span class="q-req">*</span></div>
         <div class="q-body">
           <div class="pill-group">
-<label class="pill"><input data-show="sub47" name="contrato_mkting" type="radio" value="Si actualmente"/><span>Sí, actualmente</span></label>
-<label class="pill"><input data-show="sub47" name="contrato_mkting" type="radio" value="Si antes"/><span>Sí, antes</span></label>
-<label class="pill"><input data-hide="sub47" name="contrato_mkting" type="radio" value="No nunca"/><span>No, nunca</span></label>
+<label class="pill"><input data-show="sub38a" name="contrato_mkting" type="radio" value="Si actualmente"/><span>Sí, actualmente</span></label>
+<label class="pill"><input data-show="sub38a" name="contrato_mkting" type="radio" value="Si antes"/><span>Sí, antes</span></label>
+<label class="pill"><input data-hide="sub38a" name="contrato_mkting" type="radio" value="No nunca"/><span>No, nunca</span></label>
 </div>
           <div class="err-msg">Este campo es requerido o inválido.</div>
+          
+          <div class="conditional-wrap" id="sub38a" style="display:none;">
+            <div class="q-title" style="margin-top:15px; font-size:14px; font-weight:600;">¿Cuáles servicios ha contratado?</div>
+            <input type="text" name="cuales_servicios_mkting" placeholder="Ej: Agencia de redes, SEO..." />
+          </div>
         </div>
       </div>
       <div class="q">
-        <div class="q-title"><span class="q-num">48</span> ¿En qué áreas digitales le gustaría mejorar en los próximos 12 meses? <span class="q-req">*</span></div>
-        <div class="q-desc">Selecciona hasta 3 prioritarias</div>
-        <div class="q-body">
-          <div class="options-group" id="q48-grp">
-<label class="opt-btn opt-check"><input name="areas_mejora" type="checkbox" value="Gestión de redes sociales"/><div class="opt-icon"></div>Gestión de redes sociales</label>
-<label class="opt-btn opt-check"><input name="areas_mejora" type="checkbox" value="Publicidad pagada (Ads)"/><div class="opt-icon"></div>Publicidad pagada (Meta Ads / Google Ads)</label>
-<label class="opt-btn opt-check"><input name="areas_mejora" type="checkbox" value="Sitio web propio"/><div class="opt-icon"></div>Sitio web propio</label>
-<label class="opt-btn opt-check"><input name="areas_mejora" type="checkbox" value="Google Business / Maps"/><div class="opt-icon"></div>Posicionamiento en Google / Maps</label>
-<label class="opt-btn opt-check"><input name="areas_mejora" type="checkbox" value="Tienda online"/><div class="opt-icon"></div>Tienda online / e-commerce</label>
-<label class="opt-btn opt-check"><input name="areas_mejora" type="checkbox" value="Fotografía y vídeo profesional"/><div class="opt-icon"></div>Fotografía y vídeo profesional</label>
-<label class="opt-btn opt-check"><input name="areas_mejora" type="checkbox" value="Inteligencia Artificial"/><div class="opt-icon"></div>Uso de Inteligencia Artificial</label>
-<label class="opt-btn opt-check"><input name="areas_mejora" type="checkbox" value="Analítica y métricas"/><div class="opt-icon"></div>Analítica y métricas de negocio</label>
-<label class="opt-btn opt-check"><input name="areas_mejora" type="checkbox" value="Sistemas de gestión (TPV, ERP)"/><div class="opt-icon"></div>Sistemas de gestión (TPV, ERP, CRM)</label>
-<label class="opt-btn opt-check"><input name="areas_mejora" type="checkbox" value="Formación digital"/><div class="opt-icon"></div>Formación digital para el equipo</label>
-</div>
-          <div class="err-msg">Este campo es requerido o inválido.</div>
-        </div>
-      </div>
-      <div class="q">
-        <div class="q-title"><span class="q-num">49</span> ¿Estaría dispuesto a participar en un programa colectivo de digitalización del mercado? </div>
+        <div class="q-title"><span class="q-num">39</span> ¿Estaría dispuesto a participar en un programa colectivo de digitalización del mercado? </div>
         <div class="q-desc">Con formaciones, recursos compartidos y acompañamiento grupal</div>
         <div class="q-body">
           <div class="pill-group">
@@ -756,21 +623,7 @@
         </div>
       </div>
       <div class="q">
-        <div class="q-title"><span class="q-num">50</span> ¿Cuánto estaría dispuesto a invertir mensualmente en un servicio integral de marketing digital? <span class="q-req">*</span></div>
-        <div class="q-body">
-          <div class="pill-group">
-<label class="pill"><input name="wtp_mensual" type="radio" value="Menos de 100€"/><span>Menos de 100€</span></label>
-<label class="pill"><input name="wtp_mensual" type="radio" value="100-300€"/><span>100–300€</span></label>
-<label class="pill"><input name="wtp_mensual" type="radio" value="300-600€"/><span>300–600€</span></label>
-<label class="pill"><input name="wtp_mensual" type="radio" value="600-1000€"/><span>600–1.000€</span></label>
-<label class="pill"><input name="wtp_mensual" type="radio" value="Más de 1000€"/><span>+1.000€</span></label>
-<label class="pill"><input name="wtp_mensual" type="radio" value="No invertiría"/><span>No invertiría</span></label>
-</div>
-          <div class="err-msg">Este campo es requerido o inválido.</div>
-        </div>
-      </div>
-      <div class="q">
-        <div class="q-title"><span class="q-num">51</span> ¿Qué servicio le aportaría más valor inmediato? </div>
+        <div class="q-title"><span class="q-num">40</span> ¿Qué servicio le aportaría más valor inmediato? </div>
         <div class="q-body">
           <div class="options-group">
 <label class="opt-btn"><input name="servicio_prioritario" type="radio" value="Gestión de redes sociales"/><div class="opt-icon"></div>Gestión de redes sociales</label>
@@ -786,7 +639,7 @@
         </div>
       </div>
       <div class="q">
-        <div class="q-title"><span class="q-num">52</span> ¿Tiene algún comentario o necesidad específica que quiera compartir? </div>
+        <div class="q-title"><span class="q-num">41</span> ¿Tiene algún comentario o necesidad específica que quiera compartir? </div>
         <div class="q-desc">Campo libre para cualquier observación, duda o petición</div>
         <div class="q-body">
           <textarea name="comentarios" placeholder="Escribe aquí lo que quieras…"></textarea>
@@ -794,12 +647,21 @@
         </div>
       </div>
 
+    </div>
+  </div>
+
+  <div class="enviar-sec">
+    <h2>¿Listo para enviar?</h2>
+    <p>Revisa tus respuestas o guarda tu progreso y continúa más tarde.</p>
+    <button class="btn-enviar" id="main-btn-enviar">Enviar Diagnóstico</button>
+  </div>
+  
   </form>
 </div>
 
 <div class="floating-actions">
   <a href="#" class="fab">↑</a>
-  <button class="fab fab-submit" form="diagnostic-form">✓</button>
+  <button class="fab fab-enviar" form="diagnostic-form">✓</button>
 </div>
 
 <script src="js/main.js"></script>

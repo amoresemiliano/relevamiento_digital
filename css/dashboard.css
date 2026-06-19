@@ -15,10 +15,8 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* Roboto Mono para todo el cuerpo, datos y tablas */
 body { font-family: var(--font-data); background-color: var(--bg-main); color: var(--text-main); -webkit-font-smoothing: antialiased; }
 
-/* Oswald para titulares */
 h1, h2, h3, h4 { font-family: var(--font-header); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; }
 
 .dashboard-container { display: flex; min-height: 100vh; }
@@ -84,11 +82,11 @@ h1, h2, h3, h4 { font-family: var(--font-header); text-transform: uppercase; fon
     .dashboard-container { flex-direction: column; }
     .sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
     .details-grid { grid-template-columns: 1fr; }
-}/* Additional fixes or overrides for our mockups if necessary */
+}
+
 .text-green { color: #00C27C; }
 .text-red { color: #ff5a5a; }
 .badge { background: #333; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
-/* Utilities for new Dashboard items */
 .mt-4 { margin-top: 1.5rem; }
 .bg-green { background-color: #00C27C; }
 .bg-red { background-color: #ff5a5a; }

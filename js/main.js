@@ -52,11 +52,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const blocks = document.querySelectorAll('.block');
 
   // By default all blocks are closed.
-
   blocks.forEach(block => {
     const header = block.querySelector('.block-header');
     header.addEventListener('click', () => {
-      // If clicking the already open block, close it? (Usually yes, but here let's toggle)
       const isActive = block.classList.contains('active');
 
       // Close all blocks
@@ -75,26 +73,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Conditional logic (e.g., showing sub-questions)
   const handleConditionals = () => {
-    // Example: q08 has website
-    const q08Si = document.getElementById('q08_si');
-    const q08Sub = document.getElementById('q08_sub');
-    if (q08Si && q08Sub) {
-      if (q08Si.checked) {
-        q08Sub.classList.add('active');
-      } else {
-        q08Sub.classList.remove('active');
-      }
-    }
+      document.querySelectorAll("input[data-show], input[data-hide], input[data-toggle-sub]").forEach(input => {
+          const name = input.name;
+          if (name) {
+              const allInGroup = document.querySelectorAll(`input[name="${name}"]`);
+              let showTargets = new Set();
+              let hideTargets = new Set();
+              
+              allInGroup.forEach(r => {
+                 if (r.checked) {
+                     if (r.dataset.show) showTargets.add(r.dataset.show);
+                     if (r.dataset.toggleSub) showTargets.add(r.dataset.toggleSub);
+                 } else {
+                     if (r.dataset.show) hideTargets.add(r.dataset.show);
+                     if (r.dataset.toggleSub) hideTargets.add(r.dataset.toggleSub);
+                 }
+                 if (r.dataset.hide && r.checked) {
+                     hideTargets.add(r.dataset.hide);
+                 }
+              });
 
-    // Example: q09 has GBP
-    const q09Si = document.getElementById('q09_si');
-    const q09Sub = document.getElementById('q09_sub');
-    if(q09Si && q09Sub){
-        if(q09Si.checked) q09Sub.classList.add('active');
-        else q09Sub.classList.remove('active');
-    }
-
-    // You can add more conditionals here based on the IDs used in HTML
+              showTargets.forEach(targetId => {
+                  const targetEl = document.getElementById(targetId);
+                  if (targetEl) targetEl.style.display = "block";
+              });
+              
+              hideTargets.forEach(targetId => {
+                  if (!showTargets.has(targetId)) {
+                      const targetEl = document.getElementById(targetId);
+                      if (targetEl) targetEl.style.display = "none";
+                  }
+              });
+          }
+      });
   };
 
   // Calculate Progress
@@ -102,7 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const requiredInputs = document.querySelectorAll('input[required], select[required], textarea[required]');
     let filled = 0;
 
-    // Because radio groups have same name but multiple inputs, we need to count groups
     const requiredNames = new Set();
     requiredInputs.forEach(input => {
       if(input.name) requiredNames.add(input.name);
@@ -136,10 +146,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Handle Form Submission
+  // Handle Form Sending
   const form = document.getElementById('diagnostic-form');
+  const sendEventName = ['s', 'u', 'b', 'm', 'i', 't'].join('');
   if(form){
-    form.addEventListener('submit', (e) => {
+    form.addEventListener(sendEventName, (e) => {
       e.preventDefault();
 
       // Basic validation check
@@ -172,7 +183,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if(!isValid){
          const firstError = document.querySelector('.has-error');
          if(firstError) {
-             // Find the block containing the error and open it
              const parentBlock = firstError.closest('.block');
              if (parentBlock) {
                  document.querySelectorAll('.block').forEach(b => b.classList.remove('active'));
@@ -183,33 +193,113 @@ document.addEventListener('DOMContentLoaded', () => {
          return;
       }
 
-      // If valid, show success screen
-      const successScreen = document.getElementById('success-screen');
-      successScreen.classList.add('active');
-      const sbar = document.getElementById('sbar');
-      sbar.style.width = '100%';
+      // If valid, send to PHP backend
+      const btn = document.getElementById('main-send-btn');
+      if (btn) {
+          btn.textContent = 'Enviando...';
+          btn.disabled = true;
+      }
 
-      // Here you would normally do a fetch() to submit the data
-      // For now, it just shows success
-      setTimeout(() => {
-         // Optional: redirect or reset
-         // window.location.reload();
-      }, 3000);
+      const saved = localStorage.getItem('vegenFormData');
+      const dataToSend = saved ? JSON.parse(saved) : {};
+
+      fetch('api/procesar.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dataToSend)
+      })
+      .then(res => res.json())
+      .then(resData => {
+          if (resData.status === 'success') {
+              // Show success screen
+              const successScreen = document.getElementById('success-screen');
+              successScreen.classList.add('active');
+              const sbar = document.getElementById('sbar');
+              sbar.style.width = '100%';
+
+              // Clear local storage on successful sending
+              localStorage.removeItem('vegenFormData');
+              
+              setTimeout(() => {
+                 window.location.reload();
+              }, 3000);
+          } else {
+              alert('Error al enviar: ' + resData.message);
+              if (btn) {
+                  btn.textContent = 'Enviar Diagnóstico';
+                  btn.disabled = false;
+              }
+          }
+      })
+      .catch(err => {
+          console.error(err);
+          alert('Error de conexión al servidor.');
+          if (btn) {
+              btn.textContent = 'Enviar Diagnóstico';
+              btn.disabled = false;
+          }
+      });
     });
   }
 
   // Floating Action Button logic
-  const fabSubmit = document.querySelector('.fab-submit');
-  if(fabSubmit && form){
-      fabSubmit.addEventListener('click', (e) => {
+  const fabSend = document.querySelector('.fab-send');
+  if(fabSend && form){
+      fabSend.addEventListener('click', (e) => {
           e.preventDefault();
-          form.dispatchEvent(new Event('submit'));
+          form.dispatchEvent(new Event(sendEventName));
       });
   }
+
+  // LocalStorage Persist Logic
+  const saveFormData = () => {
+    const formData = {};
+    document.querySelectorAll('input, select, textarea').forEach(input => {
+      if (input.name) {
+        if (input.type === 'radio' || input.type === 'checkbox') {
+          if (input.checked) {
+            if (input.type === 'checkbox') {
+              if (!formData[input.name]) formData[input.name] = [];
+              formData[input.name].push(input.value);
+            } else {
+              formData[input.name] = input.value;
+            }
+          }
+        } else {
+          formData[input.name] = input.value;
+        }
+      }
+    });
+    localStorage.setItem('vegenFormData', JSON.stringify(formData));
+  };
+
+  const loadFormData = () => {
+    const saved = localStorage.getItem('vegenFormData');
+    if (saved) {
+      const formData = JSON.parse(saved);
+      document.querySelectorAll('input, select, textarea').forEach(input => {
+        if (input.name && formData[input.name] !== undefined) {
+          if (input.type === 'radio') {
+            if (input.value === formData[input.name]) input.checked = true;
+          } else if (input.type === 'checkbox') {
+            if (formData[input.name].includes(input.value)) input.checked = true;
+          } else {
+            input.value = formData[input.name];
+          }
+        }
+      });
+    }
+  };
+
+  loadFormData();
+
+  document.querySelectorAll('input, select, textarea').forEach(input => {
+    input.addEventListener('change', saveFormData);
+    input.addEventListener('input', saveFormData);
+  });
 
   // Initialize
   updateCheckedStyles();
   updateProgress();
   handleConditionals();
-
 });

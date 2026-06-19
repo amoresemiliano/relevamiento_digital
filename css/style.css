@@ -102,52 +102,45 @@ a:hover{color:var(--g2);}
   margin-left: 15px;
 }
 .dashboard-btn {
-  background: var(--black);
-  color: var(--white);
-  padding: 8px 16px;
-  border-radius: var(--radius-sm);
-  font-size: 13px;
-  font-weight: 600;
-  text-decoration: none;
   display: inline-block;
-  transition: background 0.3s;
+  background: #111;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 13px;
+  transition: 0.3s;
 }
 .dashboard-btn:hover {
-  background: #333;
-  color: var(--white);
+  background: var(--g);
+  color: #111;
 }
 
 /* ── HERO ── */
 .hero{
-  padding:40px 20px;
-  background:var(--white);
-  border-bottom:1px solid var(--border);
+  text-align:center;
+  padding:50px 20px 30px;
 }
-.hero-inner{
-  max-width:600px;
-  margin:0 auto;
-}
+.hero-inner{max-width:560px;margin:0 auto;}
 .hero-label{
   display:inline-block;
-  font-size:12px;text-transform:uppercase;letter-spacing:1px;font-weight:600;
-  color:var(--g);
+  background:rgba(0,194,124,0.1);
+  color:var(--g2);
+  padding:5px 12px;border-radius:30px;
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;
   margin-bottom:15px;
 }
 .hero h1{
-  font-size:36px;letter-spacing:-1px;margin-bottom:15px;
+  font-size:36px;margin-bottom:15px;letter-spacing:-1px;
 }
 .hero p{
-  color:var(--muted);
-  font-size:15px;
+  color:var(--muted);font-size:15px;margin-bottom:30px;
 }
-
-/* ── INDICATORS ── */
 .indicators{
-  display:grid;grid-template-columns:1fr 1fr;gap:10px;
-  margin-top:30px;
+  display:flex;gap:10px;justify-content:center;
 }
 .ind{
-  background:var(--card2);
+  flex:1;background:var(--card2);
   padding:15px;border-radius:var(--radius-sm);
   border:1px solid var(--border);
   display:flex;flex-direction:column;
@@ -161,15 +154,16 @@ a:hover{color:var(--g2);}
 }
 
 /* ── CONTAINER ── */
-.container{
-  max-width:600px;
-  margin:0 auto;
-  padding:40px 20px 100px;
+.container { 
+  max-width: 600px; 
+  margin: 0 auto; 
+  padding: 40px 20px 100px; 
 }
 
 /* ── FORM ── */
 .form-wrapper{
   display:flex;flex-direction:column;gap:15px;
+  width:100%;
 }
 
 /* ── BLOCK (ACORDEÓN) ── */
@@ -403,6 +397,12 @@ textarea{resize:vertical;min-height:100px;}
 }
 .btn-submit:active{transform:translateY(0);}
 
+.btn-submit:disabled{
+  background: var(--muted2);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
 .privacy-note{
   margin-top:15px;font-size:11px;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:5px;
 }
@@ -565,7 +565,17 @@ textarea{resize:vertical;min-height:100px;}
     border-color: var(--g);
     background: rgba(0,194,124,0.05);
     color: #111;
-
 }
 
-
+/* SUB-QUESTIONS (CONDITIONAL) */
+.conditional-wrap {
+    margin-top: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-left: 3px solid var(--g);
+    border-radius: 4px;
+}
+.conditional-wrap input {
+    margin-top: 10px;
+    background: #fff;
+}
