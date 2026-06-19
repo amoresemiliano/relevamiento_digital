@@ -1,15 +1,86 @@
+
 class DashboardApp {
     constructor() {
-        this.init();
+        this.rawData = [];
+        this.userRole = null; // 'admin' or 'manager'
+
+        // --- FIREBASE CONFIGURATION (Placeholder) ---
+        // REPLACE THIS BLOCK WITH YOUR FIREBASE PROJECT CONFIG
+        const firebaseConfig = {
+            apiKey: "AIzaSyXXXXXXXXXXXXXXX",
+            authDomain: "tu-proyecto.firebaseapp.com",
+            projectId: "tu-proyecto",
+            storageBucket: "tu-proyecto.appspot.com",
+            messagingSenderId: "1234567890",
+            appId: "1:1234567890:web:abcdef123456"
+        };
+
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        this.auth = firebase.auth();
+
+        this.initAuth();
     }
 
-        init() {
-        document.getElementById('current-date').innerText = new Date().toLocaleDateString('es-ES');
-        this.setupNavigation();
-        this.fetchDataAndRender();
+    initAuth() {
+        const loginBtn = document.getElementById('btn-google-login');
+        const loginOverlay = document.getElementById('login-overlay');
+        const errorMsg = document.getElementById('login-error');
+
+        loginBtn.addEventListener('click', () => {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            this.auth.signInWithPopup(provider).catch(error => {
+                console.error("Login Error:", error);
+                errorMsg.innerText = "Error al iniciar sesión: " + error.message;
+                errorMsg.style.display = 'block';
+            });
+        });
+
+        this.auth.onAuthStateChanged(user => {
+            if (user) {
+                // Check Access
+                const email = user.email.toLowerCase();
+                if (email === 'vegendigital@gmail.com') {
+                    this.userRole = 'admin';
+                } else if (email === 'gerencia@mercadomaravillas.com') {
+                    this.userRole = 'manager';
+                } else {
+                    // Unauthorized
+                    this.auth.signOut();
+                    errorMsg.innerText = "Acceso denegado: Este correo no tiene permisos.";
+                    errorMsg.style.display = 'block';
+                    return;
+                }
+
+                // Authorized
+                loginOverlay.style.display = 'none';
+
+                // Update UI User info
+                const userInfoSpan = document.querySelector('.user-info span');
+                if (userInfoSpan) userInfoSpan.innerText = email === 'vegendigital@gmail.com' ? 'Admin Vegen' : 'Gerencia Maravillas';
+
+                this.initDashboard();
+            } else {
+                // Not logged in
+                loginOverlay.style.display = 'flex';
+            }
+        });
+
+        // Logout binding
+        const logoutBtn = document.querySelector('.btn-logout');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.auth.signOut().then(() => {
+                    window.location.href = 'index.html';
+                });
+            });
+        }
     }
 
     fetchDataAndRender() {
+
         fetch('api/get_metrics.php')
             .then(res => res.json())
             .then(res => {
@@ -303,8 +374,8 @@ setupNavigation() {
             if(c.estado === 'Avanzado') badgeClass = '#4fc3f7';
 
             const row = `<tr>
-                <td>${c.nombre}</td>
-                <td>${c.categoria}</td>
+                <td>${this.escapeHTML(c.nombre)}</td>
+                <td>${this.escapeHTML(c.categoria)}</td>
                 <td><strong>${c.indice}</strong></td>
                 <td><span class="badge" style="background-color:${badgeClass}; color:#fff; padding: 4px 8px; border-radius:4px; font-size:12px;">${c.estado}</span></td>
             </tr>`;
