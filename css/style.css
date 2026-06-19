@@ -170,6 +170,7 @@ a:hover{color:var(--g2);}
 /* ── FORM ── */
 .form-wrapper{
   display:flex;flex-direction:column;gap:15px;
+  width:100%;
 }
 
 /* ── BLOCK (ACORDEÓN) ── */

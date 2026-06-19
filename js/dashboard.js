@@ -3,14 +3,42 @@ class DashboardApp {
         this.init();
     }
 
-    init() {
+        init() {
         document.getElementById('current-date').innerText = new Date().toLocaleDateString('es-ES');
         this.setupNavigation();
-        this.renderCharts();
-        this.populateTables();
+        this.fetchDataAndRender();
     }
 
-    setupNavigation() {
+    fetchDataAndRender() {
+        fetch('api/get_metrics.php')
+            .then(res => res.json())
+            .then(res => {
+                if (res.status === 'success' && res.data.length > 0) {
+                    this.rawData = res.data;
+                    this.processMetrics();
+                    this.renderCharts();
+                    this.populateTables();
+                } else {
+                    // Fallback to mock data if empty
+                    this.rawData = [];
+                    this.renderCharts();
+                    this.populateTables();
+                }
+            })
+            .catch(err => {
+                console.error("Error fetching data:", err);
+                // Fallback to mock data
+                this.rawData = [];
+                this.renderCharts();
+                this.populateTables();
+            });
+    }
+
+    processMetrics() {
+        // Here we could calculate real indices based on this.rawData
+        // For now, this placeholder ensures the charts don't break if we implement it fully later
+    }
+setupNavigation() {
         const navItems = document.querySelectorAll('.nav-item');
         navItems.forEach(item => {
             item.addEventListener('click', (e) => {

@@ -157,6 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
 
+
       // Basic validation check
       let isValid = true;
       const requiredInputs = form.querySelectorAll('[required]');
@@ -187,7 +188,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if(!isValid){
          const firstError = document.querySelector('.has-error');
          if(firstError) {
-             // Find the block containing the error and open it
              const parentBlock = firstError.closest('.block');
              if (parentBlock) {
                  document.querySelectorAll('.block').forEach(b => b.classList.remove('active'));
@@ -198,18 +198,53 @@ document.addEventListener('DOMContentLoaded', () => {
          return;
       }
 
-      // If valid, show success screen
-      const successScreen = document.getElementById('success-screen');
-      successScreen.classList.add('active');
-      const sbar = document.getElementById('sbar');
-      sbar.style.width = '100%';
+      // If valid, submit to PHP backend
+      const btn = document.getElementById('main-submit-btn');
+      if (btn) {
+          btn.textContent = 'Enviando...';
+          btn.disabled = true;
+      }
 
-      // Here you would normally do a fetch() to submit the data
-      // For now, it just shows success
-      setTimeout(() => {
-         // Optional: redirect or reset
-         // window.location.reload();
-      }, 3000);
+      const saved = localStorage.getItem('vegenFormData');
+      const dataToSend = saved ? JSON.parse(saved) : {};
+
+      fetch('api/submit.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dataToSend)
+      })
+      .then(res => res.json())
+      .then(resData => {
+          if (resData.status === 'success') {
+              // Show success screen
+              const successScreen = document.getElementById('success-screen');
+              successScreen.classList.add('active');
+              const sbar = document.getElementById('sbar');
+              sbar.style.width = '100%';
+
+              // Clear local storage on successful submit
+              localStorage.removeItem('vegenFormData');
+
+              setTimeout(() => {
+                 window.location.reload();
+              }, 3000);
+          } else {
+              alert('Error al enviar: ' + resData.message);
+              if (btn) {
+                  btn.textContent = 'Enviar Diagnóstico';
+                  btn.disabled = false;
+              }
+          }
+      })
+      .catch(err => {
+          console.error(err);
+          alert('Error de conexión al servidor.');
+          if (btn) {
+              btn.textContent = 'Enviar Diagnóstico';
+              btn.disabled = false;
+          }
+      });
+
     });
   }
 
@@ -223,7 +258,58 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Initialize
-  updateCheckedStyles();
+
+  // LocalStorage Persist Logic
+  const saveFormData = () => {
+    const formData = {};
+    document.querySelectorAll('input, select, textarea').forEach(input => {
+      if (input.name) {
+        if (input.type === 'radio' || input.type === 'checkbox') {
+          if (input.checked) {
+            if (input.type === 'checkbox') {
+              if (!formData[input.name]) formData[input.name] = [];
+              formData[input.name].push(input.value);
+            } else {
+              formData[input.name] = input.value;
+            }
+          }
+        } else {
+          formData[input.name] = input.value;
+        }
+      }
+    });
+    localStorage.setItem('vegenFormData', JSON.stringify(formData));
+  };
+
+  const loadFormData = () => {
+    const saved = localStorage.getItem('vegenFormData');
+    if (saved) {
+      const formData = JSON.parse(saved);
+      document.querySelectorAll('input, select, textarea').forEach(input => {
+        if (input.name && formData[input.name] !== undefined) {
+          if (input.type === 'radio') {
+            if (input.value === formData[input.name]) input.checked = true;
+          } else if (input.type === 'checkbox') {
+            if (formData[input.name].includes(input.value)) input.checked = true;
+          } else {
+            input.value = formData[input.name];
+          }
+        }
+      });
+      // trigger changes
+      updateCheckedStyles();
+      updateProgress();
+      handleConditionals();
+    }
+  };
+
+  loadFormData();
+
+  document.querySelectorAll('input, select, textarea').forEach(input => {
+    input.addEventListener('change', saveFormData);
+    input.addEventListener('input', saveFormData);
+  });
+updateCheckedStyles();
   updateProgress();
   handleConditionals();
 
