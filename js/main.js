@@ -75,26 +75,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Conditional logic (e.g., showing sub-questions)
   const handleConditionals = () => {
-    // Example: q08 has website
-    const q08Si = document.getElementById('q08_si');
-    const q08Sub = document.getElementById('q08_sub');
-    if (q08Si && q08Sub) {
-      if (q08Si.checked) {
-        q08Sub.classList.add('active');
-      } else {
-        q08Sub.classList.remove('active');
-      }
-    }
+      // Find all inputs that control sub-questions
+      document.querySelectorAll("input[data-show], input[data-hide], input[data-toggle-sub]").forEach(input => {
+          // If the element was just changed and it is a radio, we evaluate all in its name group
+          const name = input.name;
+          if (name) {
+              const allInGroup = document.querySelectorAll(`input[name="${name}"]`);
+              let showTargets = new Set();
+              let hideTargets = new Set();
 
-    // Example: q09 has GBP
-    const q09Si = document.getElementById('q09_si');
-    const q09Sub = document.getElementById('q09_sub');
-    if(q09Si && q09Sub){
-        if(q09Si.checked) q09Sub.classList.add('active');
-        else q09Sub.classList.remove('active');
-    }
+              allInGroup.forEach(r => {
+                 if (r.checked) {
+                     if (r.dataset.show) showTargets.add(r.dataset.show);
+                     if (r.dataset.toggleSub) showTargets.add(r.dataset.toggleSub);
+                 } else {
+                     if (r.dataset.show) hideTargets.add(r.dataset.show);
+                     if (r.dataset.toggleSub) hideTargets.add(r.dataset.toggleSub);
+                 }
+                 if (r.dataset.hide && r.checked) {
+                     hideTargets.add(r.dataset.hide);
+                 }
+              });
 
-    // You can add more conditionals here based on the IDs used in HTML
+              showTargets.forEach(targetId => {
+                  const targetEl = document.getElementById(targetId);
+                  if (targetEl) targetEl.style.display = "block";
+              });
+
+              hideTargets.forEach(targetId => {
+                  if (!showTargets.has(targetId)) {
+                      const targetEl = document.getElementById(targetId);
+                      if (targetEl) targetEl.style.display = "none";
+                  }
+              });
+          }
+      });
   };
 
   // Calculate Progress
@@ -211,4 +226,5 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCheckedStyles();
   updateProgress();
   handleConditionals();
+
 });
