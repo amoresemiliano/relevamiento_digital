@@ -7,12 +7,13 @@ class DashboardApp {
         // --- FIREBASE CONFIGURATION (Placeholder) ---
         // REPLACE THIS BLOCK WITH YOUR FIREBASE PROJECT CONFIG
         const firebaseConfig = {
-            apiKey: "AIzaSyXXXXXXXXXXXXXXX",
-            authDomain: "tu-proyecto.firebaseapp.com",
-            projectId: "tu-proyecto",
-            storageBucket: "tu-proyecto.appspot.com",
-            messagingSenderId: "1234567890",
-            appId: "1:1234567890:web:abcdef123456"
+            apiKey: "AIzaSyCqp3VVPDZ1H5qoEjYMY_z8hFWfzbsSfe8",
+            authDomain: "mm-relevamiento-digital.firebaseapp.com",
+            projectId: "mm-relevamiento-digital",
+            storageBucket: "mm-relevamiento-digital.firebasestorage.app",
+            messagingSenderId: "370217592529",
+            appId: "1:370217592529:web:d50c2c3eca8cdf3c25c7f0",
+            measurementId: "G-VX9NXTWFS4"
         };
 
         if (!firebase.apps.length) {
@@ -79,32 +80,56 @@ class DashboardApp {
         }
     }
 
-    fetchDataAndRender() {
+    async fetchDataAndRender() {
+        try {
+            // Get the current user's Firebase ID token
+            const user = this.auth.currentUser;
+            if (!user) throw new Error("No hay usuario autenticado.");
 
-        fetch('api/get_metrics.php')
-            .then(res => res.json())
-            .then(res => {
-                if (res.status === 'success' && res.data.length > 0) {
-                    this.rawData = res.data;
-                    this.processMetrics();
-                    this.renderCharts();
-                    this.populateTables();
-                } else {
-                    // Fallback to mock data if empty
-                    this.rawData = [];
-                    this.renderCharts();
-                    this.populateTables();
+            const idToken = await user.getIdToken(true);
+
+            // Fetch data securely, passing the token in the headers
+            const response = await fetch('api/get_metrics.php', {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + idToken,
+                    'Content-Type': 'application/json'
                 }
-            })
-            .catch(err => {
-                console.error("Error fetching data:", err);
-                // Fallback to mock data
+            });
+
+            if (!response.ok) {
+                if (response.status === 401 || response.status === 403) {
+                    throw new Error("Acceso denegado por el servidor.");
+                }
+                throw new Error("Error en la solicitud al servidor.");
+            }
+
+            const res = await response.json();
+
+            if (res.status === 'success' && res.data.length > 0) {
+                this.rawData = res.data;
+                this.processMetrics();
+                this.renderCharts();
+                this.populateTables();
+            } else {
+                // Fallback to mock data if empty
                 this.rawData = [];
                 this.renderCharts();
                 this.populateTables();
-            });
-    }
+            }
+        } catch (err) {
+            console.error("Error fetching secure data:", err);
+            // Fallback to mock data or show error
+            this.rawData = [];
+            this.renderCharts();
+            this.populateTables();
 
+            // Optionally alert the user
+            if (err.message.includes("Acceso denegado")) {
+                alert("El servidor ha rechazado su acceso. Por favor, inicie sesión nuevamente.");
+            }
+        }
+    }
 
     processMetrics() {
         if (!this.rawData || this.rawData.length === 0) return;
