@@ -388,7 +388,7 @@ textarea{resize:vertical;min-height:100px;}
 .submit-sec p{color:var(--muted);font-size:14px;margin-bottom:20px;}
 
 .btn-submit{
-  background: linear-gradient(135deg, #00C27C 0%, #009960 100%);
+  background:var(--g);
   color:#fff;
   border:none;padding:16px 30px;
   font-size:16px;font-weight:700;font-family:'Syne',sans-serif;
