@@ -265,11 +265,52 @@ class DashboardApp {
         if (!this.rawData || this.rawData.length === 0) return;
 
         this.allCounts = {};
-        const total = this.rawData.length;
+
+        // Define human-readable titles for questions (52 keys based on index.html)
+        this.questionTitles = {
+            "nombre_puesto": "01 Nombre del puesto / negocio",
+            "numero_puesto": "02 Número o ubicación del puesto",
+            "categoria": "03 Categoría del negocio",
+            "rol_contacto": "05 Rol en el negocio",
+            "sitio_web": "08 ¿Tiene sitio web propio?",
+            "google_maps": "09 ¿Tiene perfil en Google Business Profile?",
+            "resenas": "10 ¿Recibe reseñas de clientes en internet?",
+            "directorios": "11 ¿Aparece en otros directorios?",
+            "redes": "12 ¿En qué redes sociales tiene presencia?",
+            "frecuencia_redes": "13 ¿Con qué frecuencia publica contenido?",
+            "responsable_redes": "14 ¿Quién se encarga de las redes sociales?",
+            "tipo_contenido": "15 ¿Qué tipo de contenido suele publicar?",
+            "calidad_fotos": "16 ¿Cómo realiza sus fotos o vídeos?",
+            "meta_ads": "17 ¿Ha realizado campañas en Meta Ads?",
+            "google_ads": "18 ¿Ha realizado campañas en Google Ads?",
+            "presupuesto_ads": "19 ¿Qué presupuesto mensual destina a publicidad?",
+            "mide_roi": "20 ¿Mide el retorno de su inversión?",
+            "email_mkting": "21 ¿Envía correos electrónicos?",
+            "delivery_apps": "22 ¿Vende a través de delivery?",
+            "ventas_online_pct": "23 ¿Porcentaje de ventas online?",
+            "whatsapp_pedidos": "24 ¿Toma pedidos por WhatsApp?",
+            "plataforma_ecommerce": "25 Plataforma de e-commerce",
+            "click_collect": "26 ¿Ofrece Click & Collect?",
+            "tpv": "27 ¿Qué sistema TPV utiliza?",
+            "gestion_inventario": "28 ¿Cómo gestiona su inventario?",
+            "informatizada_conta": "29 ¿Tiene informatizada la facturación?",
+            "pago_digital": "30 ¿Ofrece opciones de pago digital?",
+            "crm": "31 ¿Cuenta con sistema CRM?",
+            "comunicacion_interna": "32 Herramientas de comunicación interna",
+            "uso_ia": "33 ¿Utiliza herramientas de IA?",
+            "utilidad_ia": "34 Utilidad deseada para la IA",
+            "revisa_metricas": "35 ¿Revisa métricas del negocio?",
+            "importancia_online": "36 Importancia de la presencia digital",
+            "obstaculos": "37 Mayor obstáculo para la presencia digital",
+            "contrato_mkting": "38 ¿Ha contratado servicios de marketing?",
+            "programa_colectivo": "39 ¿Participaría en un programa colectivo?",
+            "servicio_prioritario": "40 Servicio de mayor valor inmediato"
+        };
 
         this.rawData.forEach(comercio => {
             const j = comercio.respuestas_json || {};
-            for (const key in j) {
+            // Iterate only over defined titles so we don't list weird empty inputs
+            for (const key in this.questionTitles) {
                 if (!this.allCounts[key]) this.allCounts[key] = {};
 
                 const answer = j[key];
@@ -297,19 +338,18 @@ class DashboardApp {
         if (!this.allCounts) return;
         const total = this.rawData.length;
 
-        for (const [pregunta, counts] of Object.entries(this.allCounts)) {
+        for (const [key, counts] of Object.entries(this.allCounts)) {
             let optionsHtml = '';
-            for (const [key, count] of Object.entries(counts)) {
-                if (key === '' || key === 'Sin respuesta') continue;
+            for (const [ans, count] of Object.entries(counts)) {
+                if (ans === '' || ans === 'Sin respuesta') continue;
                 const pct = Math.round((count / total) * 100);
-                optionsHtml += `<span class="badge" style="background: #f1f1f1; color: #333; margin-right: 5px; margin-bottom: 5px; display: inline-block; border: 1px solid #ccc;">${this.escapeHTML(key)}: <strong>${count} (${pct}%)</strong></span>`;
+                optionsHtml += `<span class="badge" style="background: #f1f1f1; color: #333; margin-right: 5px; margin-bottom: 5px; display: inline-block; border: 1px solid #ccc;">${this.escapeHTML(ans)}: <strong>${count} (${pct}%)</strong></span>`;
             }
             if (optionsHtml === '') optionsHtml = '<span style="color:#aaa; font-style:italic;">No hay datos válidos</span>';
 
             const tr = document.createElement('tr');
-            let formattedTitle = pregunta.replace(/_/g, ' ');
             tr.innerHTML = `
-                <td style="font-weight: 600; width: 35%; text-transform: capitalize;">${this.escapeHTML(formattedTitle)}</td>
+                <td style="font-weight: 600; width: 35%;">${this.escapeHTML(this.questionTitles[key])}</td>
                 <td>${optionsHtml}</td>
             `;
             tbody.appendChild(tr);
