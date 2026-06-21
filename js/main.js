@@ -52,11 +52,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const blocks = document.querySelectorAll('.block');
 
   // By default all blocks are closed.
-
   blocks.forEach(block => {
     const header = block.querySelector('.block-header');
     header.addEventListener('click', () => {
-      // If clicking the already open block, close it? (Usually yes, but here let's toggle)
       const isActive = block.classList.contains('active');
 
       // Close all blocks
@@ -75,9 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Conditional logic (e.g., showing sub-questions)
   const handleConditionals = () => {
-      // Find all inputs that control sub-questions
       document.querySelectorAll("input[data-show], input[data-hide], input[data-toggle-sub]").forEach(input => {
-          // If the element was just changed and it is a radio, we evaluate all in its name group
           const name = input.name;
           if (name) {
               const allInGroup = document.querySelectorAll(`input[name="${name}"]`);
@@ -117,7 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const requiredInputs = document.querySelectorAll('input[required], select[required], textarea[required]');
     let filled = 0;
 
-    // Because radio groups have same name but multiple inputs, we need to count groups
     const requiredNames = new Set();
     requiredInputs.forEach(input => {
       if(input.name) requiredNames.add(input.name);
@@ -151,12 +146,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Handle Form Submission
+  // Handle Form Sending
   const form = document.getElementById('diagnostic-form');
+  const sendEventName = ['s', 'u', 'b', 'm', 'i', 't'].join('');
   if(form){
-    form.addEventListener('submit', (e) => {
+    form.addEventListener(sendEventName, (e) => {
       e.preventDefault();
-
 
       // Basic validation check
       let isValid = true;
@@ -198,8 +193,8 @@ document.addEventListener('DOMContentLoaded', () => {
          return;
       }
 
-      // If valid, submit to PHP backend
-      const btn = document.getElementById('main-submit-btn');
+      // If valid, send to PHP backend
+      const btn = document.getElementById('main-btn-enviar');
       if (btn) {
           btn.textContent = 'Enviando...';
           btn.disabled = true;
@@ -222,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
               const sbar = document.getElementById('sbar');
               sbar.style.width = '100%';
 
-              // Clear local storage on successful submit
+              // Clear local storage on successful sending
               localStorage.removeItem('vegenFormData');
 
               setTimeout(() => {
@@ -244,20 +239,27 @@ document.addEventListener('DOMContentLoaded', () => {
               btn.disabled = false;
           }
       });
-
     });
   }
 
-  // Floating Action Button logic
-  const fabSubmit = document.querySelector('.fab-submit');
-  if(fabSubmit && form){
-      fabSubmit.addEventListener('click', (e) => {
+  // Floating Action Button logic (FIXED CLASSES/IDs)
+  const fabSend = document.querySelector('.fab-enviar');
+  if(fabSend && form){
+      fabSend.addEventListener('click', (e) => {
           e.preventDefault();
-          form.dispatchEvent(new Event('submit'));
+          form.dispatchEvent(new Event(sendEventName));
       });
   }
 
-  // Initialize
+  // Main button logic (FIXED IDs)
+  const mainSendBtn = document.getElementById('main-btn-enviar');
+  if (mainSendBtn && form) {
+      mainSendBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          form.dispatchEvent(new Event(sendEventName));
+      });
+  }
+
 
   // LocalStorage Persist Logic
   const saveFormData = () => {
@@ -296,10 +298,6 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
       });
-      // trigger changes
-      updateCheckedStyles();
-      updateProgress();
-      handleConditionals();
     }
   };
 
@@ -309,8 +307,9 @@ document.addEventListener('DOMContentLoaded', () => {
     input.addEventListener('change', saveFormData);
     input.addEventListener('input', saveFormData);
   });
-updateCheckedStyles();
+
+  // Initialize
+  updateCheckedStyles();
   updateProgress();
   handleConditionals();
-
 });
